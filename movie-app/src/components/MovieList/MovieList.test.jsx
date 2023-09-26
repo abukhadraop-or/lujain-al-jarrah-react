@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
 import React from "react";
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import axios from "axios";
 import MovieList, { pageNumber } from "components/MovieList/MovieList";
+
+const { getByText } = screen;
 
 jest.mock("axios");
 
@@ -48,7 +50,7 @@ describe("MovieList", () => {
     };
     axios.get.mockResolvedValueOnce(mockResponseData);
 
-    const { getByText } = render(
+    render(
       <MovieList
         movies={mockMovies}
         setMovies={mockSetMovies}
@@ -73,12 +75,5 @@ describe("MovieList", () => {
         },
       },
     );
-
-    // await waitFor(() => {
-    //   expect(mockSetMovies).toHaveBeenCalledWith([
-    //     ...mockMovies,
-    //     ...mockResponseData.data.results,
-    //   ]);
-    // });
   });
 });

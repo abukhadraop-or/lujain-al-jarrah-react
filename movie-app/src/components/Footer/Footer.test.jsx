@@ -1,11 +1,13 @@
 /* eslint-disable no-undef */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Footer from "components/Footer/Footer";
+
+const { getByText, getByAltText } = screen;
 
 describe("Footer", () => {
   test("renders with correct content and items", () => {
-    const { getByText, getByAltText } = render(<Footer />);
+    render(<Footer />);
     expect(getByAltText("footer-img")).toBeInTheDocument();
     expect(getByText("JOIN THE COMMUNITY")).toBeInTheDocument();
 

@@ -2,8 +2,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import MenuItem from "./MenuItem";
+
+const { getByText, queryByText } = screen;
 
 describe("MenuItem", () => {
   const mockMenuItem = {
@@ -14,7 +16,7 @@ describe("MenuItem", () => {
   };
 
   test("renders menu item with closed submenu", () => {
-    const { getByText, queryByText } = render(<MenuItem {...mockMenuItem} />);
+    render(<MenuItem {...mockMenuItem} />);
 
     expect(getByText("Menu Title")).toBeInTheDocument();
     expect(queryByText("Item 1")).toBeNull();
@@ -23,7 +25,7 @@ describe("MenuItem", () => {
   });
 
   test("renders menu item with open submenu", () => {
-    const { getByText } = render(<MenuItem {...mockMenuItem} isOpen={true} />);
+    render(<MenuItem {...mockMenuItem} isOpen={true} />);
 
     expect(getByText("Menu Title")).toBeInTheDocument();
     expect(getByText("Item 1")).toBeInTheDocument();
@@ -32,7 +34,7 @@ describe("MenuItem", () => {
   });
 
   test("calls onClick when menu item is clicked", () => {
-    const { getByText } = render(<MenuItem {...mockMenuItem} />);
+    render(<MenuItem {...mockMenuItem} />);
 
     fireEvent.click(getByText("Menu Title"));
     expect(mockMenuItem.onClick).toHaveBeenCalledTimes(1);

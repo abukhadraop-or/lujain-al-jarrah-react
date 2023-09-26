@@ -7,9 +7,8 @@ const Container = styled.div`
   @media (min-width: 992px) {
     display: flex;
     flex-direction: row;
-    max-width:90rem;
+    max-width: 90rem;
     margin: auto;
-  }
   }
 `;
 export { Container };

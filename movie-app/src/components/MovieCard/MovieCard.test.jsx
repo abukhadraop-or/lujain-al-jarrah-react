@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import MovieCard from "components/MovieCard/MovieCard";
+
+const { getByText, getByAltText } = screen;
 
 describe("MovieCard", () => {
   const mockMovie = {
@@ -14,7 +16,7 @@ describe("MovieCard", () => {
   };
 
   test("renders with correct movie information", () => {
-    const { getByText, getByAltText } = render(
+    render(
       <MovieCard
         title={mockMovie.title}
         releaseDate={mockMovie.release_date}

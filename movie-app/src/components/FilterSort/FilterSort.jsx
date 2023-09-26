@@ -1,27 +1,23 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
-import { DatePicker } from "antd";
-
 import {
   ContentContainer,
   Button,
-  GenresButton,
   ContentName,
   Paragraph,
+  SelectStyle,
+  Icon,
 } from "components/FilterSort/styles";
-import {
-  searchAllActiveHandler,
-  searchAllReleaseHandler,
-  searchAllCountryHandler,
-  showContentFilter,
-  addGenres,
-  showContent,
-  changeAvailabilities,
-  changeRelease,
-} from "components/FilterSort/function";
-import Select from "components/FilterSort/Select";
-import SearchComponent from "components/FilterSort/Search";
+import PropTypes from "prop-types";
+import SearchAllAvailabe from "components/SearchAllAvailabe/SearchAllAvailabe";
+import GenereInput from "components/GenereInput/GenereInput";
+import axios from "axios";
+import SortInput from "components/SortInput/SortInput";
+import ReleaseDate from "components/ReleaseDate/ReleaseDate";
+import Keyword from "components/Keyword/Keyword";
+import arrow from "assets/arrow.svg";
+
 /**
  * Filter and sort component for movies.
  * @param {object} props - The properties for the component.
@@ -34,6 +30,7 @@ import SearchComponent from "components/FilterSort/Search";
  * @param {Array} props.release - Array of release types.
  * @returns {JSX.Element} The FilterSort component.
  */
+
 export default function FilterSort({
   getMovies,
   setSelectedGenres,
@@ -42,73 +39,70 @@ export default function FilterSort({
   availabilities,
   setRelease,
   release,
+  setSelectedKeyword,
+  selectedKeyword,
 }) {
-  const [isActive, setIsActive] = useState(false);
   const [isActiveFilter, setIsActiveFilter] = useState(false);
-  const [genres, setGenres] = useState([]);
-  const [searchAllActive, setSearchAllActive] = useState(true);
-  const [searchAllRelease, setSearchAllRelease] = useState(true);
-  const [searchAllCountry, setSearchAllCountry] = useState(true);
   const [lang, setLang] = useState([]);
   const [country, setCountry] = useState([]);
-  const availableArr = ["flatrate", "free", "ads", "rent", "buy"];
-  const releasArr = [
-    { name: "Theatrical (limited)", value: 2 },
-    { name: "Theatrical", value: 3 },
-    { name: "Premiere", value: 1 },
-    { name: "Digital", value: 4 },
-    { name: "Physical", value: 5 },
-    { name: "TV", value: 6 },
-  ];
+  const [genres, setGenres] = useState([]);
 
+  /**
+   * Fetches movie genres from the API and sets them using the provided callback.
+   */
+  const getGenres = () => {
+    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
+    const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${apiKey}`;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setGenres(response.data.genres);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  /**
+   * Fetches available languages from the API and sets them using the provided callback.
+   */
+  const getLanguages = () => {
+    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
+    const apiUrl = `https://api.themoviedb.org/3/configuration/languages?api_key=${apiKey}`;
+    axios.get(apiUrl).then((response) => {
+      setLang(response.data);
+    });
+  };
+  /**
+   * Fetches available countries from the API and sets them using the provided callback.
+   */
+  const getCountry = () => {
+    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
+    const apiUrl = `https://api.themoviedb.org/3/configuration/countries?language=en-US&api_key=${apiKey}`;
+    axios.get(apiUrl).then((response) => {
+      setCountry(response.data);
+    });
+  };
+  /**
+   * Toggles the display of the content filter and fetches genres, languages, and countries.
+   * @param {object} e - Event object.
+   */
+  const showContentFilter = (e) => {
+    e.preventDefault();
+    setIsActiveFilter((prevIsActive) => !prevIsActive);
+    getGenres();
+    getLanguages();
+    getCountry();
+  };
   return (
     <div>
       <form onSubmit={getMovies}>
+        <SortInput />
         <ContentContainer>
-          <ContentName
-            onClick={(e) => {
-              showContent(e, setIsActive, isActive);
-            }}
-          >
-            Sort
-          </ContentName>
-          <div style={{ display: isActive ? "block" : "none" }}>
-            <Select
-              id="sort"
-              data={[
-                { name: "Popularity Descending", value: "popularity.desc" },
-                { name: "Popularity Ascending", value: "popularity.asc" },
-                { name: "Rating Descending", value: "vote_average.desc" },
-                { name: "Rating Ascending", value: "vote_average.asc" },
-                {
-                  name: "Release Date Descending ",
-                  value: "primary_release_date.desc",
-                },
-                {
-                  name: "Release Date Ascending",
-                  value: "primary_release_date.asc",
-                },
-                { name: "Title (Z-A)", value: "title.desc" },
-                { name: "Title (A-Z)", value: "title.asc" },
-              ]}
-              paragraph="Sort Results By"
-            />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <ContentName onClick={showContentFilter}>Filter</ContentName>
+            <Icon src={arrow} alt="arrow" isActive={isActiveFilter} />
           </div>
-        </ContentContainer>
-        <ContentContainer>
-          <ContentName
-            onClick={(e) =>
-              showContentFilter(
-                e,
-                setIsActiveFilter,
-                setGenres,
-                setLang,
-                setCountry,
-              )
-            }
-          >
-            Filter
-          </ContentName>
+
           <div
             style={{
               display: isActiveFilter ? "block" : "none",
@@ -124,131 +118,30 @@ export default function FilterSort({
             <br />
             <input type="radio" id="not_seen" name="show_me" value="2" />
             <label htmlFor="not_seen">Movies I Have Seen</label>
-            <Paragraph> Availabilities </Paragraph>
-            <input
-              type="checkbox"
-              id="all"
-              name="all"
-              value="all"
-              defaultChecked={searchAllActive}
-              onChange={(e) => {
-                searchAllActiveHandler(
-                  e,
-                  setSearchAllActive,
-                  searchAllActive,
-                  setAvailabilities,
-                );
-              }}
+            <SearchAllAvailabe
+              setAvailabilities={setAvailabilities}
+              availabilities={availabilities}
             />
-            <label htmlFor="all">Search all availabilities?</label>
-            {!searchAllActive && (
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                {availableArr.map((opt) => (
-                  <label htmlFor={opt}>
-                    <input
-                      type="checkbox"
-                      id={opt}
-                      name={opt}
-                      value={opt}
-                      onChange={(e) => {
-                        changeAvailabilities(
-                          e,
-                          setAvailabilities,
-                          availabilities,
-                        );
-                      }}
-                    />
-                    {opt}
-                  </label>
-                ))}
-              </div>
-            )}
-            <Paragraph>Release Dates</Paragraph>
-            <input
-              type="checkbox"
-              id="release"
-              name="release"
-              value="release"
-              defaultChecked={searchAllRelease}
-              onChange={(e) => {
-                searchAllReleaseHandler(
-                  e,
-                  setSearchAllRelease,
-                  searchAllRelease,
-                  setRelease,
-                );
-              }}
+            <ReleaseDate
+              country={country}
+              setRelease={setRelease}
+              release={release}
             />
-            <label htmlFor="release">Search all releases?</label>
-            {!searchAllRelease && (
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                <label htmlFor="country">
-                  <input
-                    type="checkbox"
-                    id="country"
-                    name="country"
-                    value="country"
-                    defaultChecked={searchAllCountry}
-                    onChange={(e) => {
-                      searchAllCountryHandler(
-                        e,
-                        setSearchAllCountry,
-                        searchAllCountry,
-                      );
-                    }}
-                  />
-                  Search all countries?
-                </label>
-                {!searchAllCountry && (
-                  <select name="countries">
-                    {country.map((opt) => (
-                      <option value={opt.iso_3166_1}>{opt.english_name}</option>
-                    ))}
-                  </select>
-                )}
-                <br />
-                {releasArr.map((opt) => (
-                  <label htmlFor={opt.name}>
-                    <input
-                      type="checkbox"
-                      id={opt.name}
-                      name={opt.name}
-                      value={opt.value}
-                      onChange={(e) => {
-                        changeRelease(e, setRelease, release);
-                      }}
-                    />
-                    {opt.name}
-                  </label>
-                ))}
-              </div>
-            )}
-            <div>
-              <DatePicker name="start_date" />
-              <DatePicker name="end_date" />
-            </div>
-
-            <Paragraph> Genres </Paragraph>
-            {genres.map((genre) => (
-              <GenresButton
-                value={genre.id}
-                key={genre.id}
-                onClick={(e) => {
-                  addGenres(e, setSelectedGenres, selectedGenres);
-                }}
-                isActive={selectedGenres.includes(String(genre.id))}
-              >
-                {genre.name}
-              </GenresButton>
-            ))}
+            <GenereInput
+              setSelectedGenres={setSelectedGenres}
+              selectedGenres={selectedGenres}
+              genres={genres}
+            />
             <Paragraph> Languages</Paragraph>
-            <select name="language">
+            <SelectStyle name="language">
               {lang.map((opt) => (
                 <option value={opt.iso_639_1}>{opt.english_name}</option>
               ))}
-            </select>
-            <Paragraph> Keywords</Paragraph>
-            <SearchComponent />
+            </SelectStyle>
+            <Keyword
+              setSelectedKeyword={setSelectedKeyword}
+              selectedKeyword={selectedKeyword}
+            />
           </div>
         </ContentContainer>
         <Button>Search</Button>
@@ -256,3 +149,26 @@ export default function FilterSort({
     </div>
   );
 }
+FilterSort.propTypes = {
+  getMovies: PropTypes.func,
+  setSelectedGenres: PropTypes.func,
+  selectedGenres: PropTypes.arrayOf(PropTypes.string),
+  setAvailabilities: PropTypes.func,
+  availabilities: PropTypes.arrayOf(PropTypes.string),
+  setRelease: PropTypes.func,
+  release: PropTypes.arrayOf(PropTypes.string),
+  setSelectedKeyword: PropTypes.func,
+  selectedKeyword: PropTypes.arrayOf(PropTypes.string),
+};
+
+FilterSort.defaultProps = {
+  getMovies: () => {},
+  setSelectedGenres: () => {},
+  selectedGenres: [],
+  setAvailabilities: () => {},
+  availabilities: [],
+  setRelease: () => {},
+  release: [],
+  setSelectedKeyword: () => {},
+  selectedKeyword: [],
+};

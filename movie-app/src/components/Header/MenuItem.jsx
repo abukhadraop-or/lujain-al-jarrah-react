@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React from "react";
 
@@ -20,9 +21,9 @@ function MenuItem({ title, subMenuItems, isOpen, onClick }) {
     <SidebarLink onClick={onClick}>
       <MenuTitle>{title}</MenuTitle>
       {isOpen && (
-        <SubMenu className="sub-menu">
-          {subMenuItems.map((item) => (
-            <SubMenuLink key={item.id} href="#">
+        <SubMenu className="sub-menu" key={`menu-item-${title}`}>
+          {subMenuItems.map((item, index) => (
+            <SubMenuLink key={index} href="#">
               {item}
             </SubMenuLink>
           ))}

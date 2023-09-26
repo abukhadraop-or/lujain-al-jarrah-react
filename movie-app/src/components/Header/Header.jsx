@@ -28,7 +28,6 @@ function Header() {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
   /**
    * Toggle the open state of a menu item.
    *
@@ -53,28 +52,29 @@ function Header() {
           className="TMDB-desktop"
         />
         {menuData.map((menuItem) => (
-          <DropDownMenu>
-            <div>{menuItem.title} </div>
-            <DropDownMenuContent
-              className="dropdown-content"
-              key={menuItem.title}
-            >
+          <DropDownMenu key={menuItem.title}>
+            <div>{menuItem.title}</div>
+            <DropDownMenuContent className="dropdown-content">
               {menuItem.subMenu.map((item) => (
-                <DropDownLink href="#">{item}</DropDownLink>
+                <DropDownLink key={item} href="#">
+                  {item}
+                </DropDownLink>
               ))}
             </DropDownMenuContent>
           </DropDownMenu>
         ))}
-        <DropDownMenu>
+        <DropDownMenu key="more-menu">
           <div> more </div>
           <DropDownMenuContent className="dropdown-content">
             {otherMenuItems.map((item) => (
-              <DropDownLink href="#">{item}</DropDownLink>
+              <DropDownLink key={item} href="#">
+                {item}
+              </DropDownLink>
             ))}
           </DropDownMenuContent>
         </DropDownMenu>
       </MenuDesktop>
-      <MenuDesktop>
+      <MenuDesktop key="menu-desktop-2">
         <FeatherIcon icon="plus" />
         <FeatherIcon icon="globe" />
         <span>Login</span>
@@ -85,23 +85,35 @@ function Header() {
         icon="menu"
         onClick={toggleSidebar}
         className="sidebar-icon"
+        key="menu-icon"
       />
-      <img src={TMDBicon} alt="" width={55} height={40} className="TMDB-icon" />
-      <IconContainter>
-        <DropDownMenu>
+      <img
+        src={TMDBicon}
+        alt=""
+        width={55}
+        height={40}
+        className="TMDB-icon"
+        key="tmdb-icon"
+      />
+      <IconContainter key="icon-container">
+        <DropDownMenu key="user-dropdown">
           <FeatherIcon
             icon="user"
             style={{ padding: "0 10px" }}
             className="user-icon"
           />
           <DropDownMenuContent className="dropdown-content">
-            <DropDownLink href="#">Login</DropDownLink>
-            <DropDownLink href="#">Sign Up</DropDownLink>
+            <DropDownLink key="login-link" href="#">
+              Login
+            </DropDownLink>
+            <DropDownLink key="signup-link" href="#">
+              Sign Up
+            </DropDownLink>
           </DropDownMenuContent>
         </DropDownMenu>
         <FeatherIcon icon="search" style={{ color: "#01b4e4" }} />
       </IconContainter>
-      <Sidebar isOpen={sidebarOpen} className="side-bar">
+      <Sidebar isOpen={sidebarOpen} className="side-bar" key="sidebar">
         {menuData.map((menuItem) => (
           <MenuItem
             key={menuItem.id}

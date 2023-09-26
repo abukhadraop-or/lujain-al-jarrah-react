@@ -14,6 +14,8 @@ export default function MovieApp() {
   const [movies, setMovies] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [availabilities, setAvailabilities] = useState([]);
+  const [selectedKeyword, setSelectedKeyword] = useState([]);
+
   const [release, setRelease] = useState([]);
   const [params, setParams] = useState({
     page: 1,
@@ -40,16 +42,15 @@ export default function MovieApp() {
     const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
     if (e) {
       e.preventDefault();
-
       updatedParams = {
         ...params,
-        // region: e.target.countries.value || "",
+        region: e.target.countries ? e.target?.countries.value : "",
         "release_date.gte": e.target.start_date.value,
         "release_date.lte": e.target.end_date.value,
         show_me: e.target.show_me.value,
         sort_by: e.target.sort.value || "popularity.desc",
         with_genres: selectedGenres.join(",") || "",
-        with_keywords: "",
+        with_keywords: selectedKeyword.join("|"),
         with_original_language: e.target.language.value || "en",
         with_watch_monetization_types: availabilities.join("|"),
         with_release_type: release.join("|"),
@@ -81,6 +82,8 @@ export default function MovieApp() {
           availabilities={availabilities}
           setRelease={setRelease}
           release={release}
+          setSelectedKeyword={setSelectedKeyword}
+          selectedKeyword={selectedKeyword}
         />
         <MovieList
           movies={movies}

@@ -4,6 +4,8 @@ import { render, screen } from "@testing-library/react";
 import axios from "axios";
 import MovieApp from "pages/MoviesList/MovieApp";
 
+const { findByText } = screen;
+
 jest.mock("axios");
 
 const mockMovies = {
@@ -28,6 +30,6 @@ test("fetches movies on component mount", async () => {
     params: expect.any(Object),
   });
 
-  const movieTitle = await screen.findByText("Movie 1");
+  const movieTitle = await findByText("Movie 1");
   expect(movieTitle).toBeInTheDocument();
 });

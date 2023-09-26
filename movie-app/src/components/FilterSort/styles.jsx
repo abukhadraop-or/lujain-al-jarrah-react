@@ -22,7 +22,8 @@ const ContentName = styled.button`
   color: black;
   cursor: pointer;
   display: block;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
+  font-weight: bolder;
   outline: none;
   padding: 1.125rem;
   text-align: left;
@@ -30,18 +31,16 @@ const ContentName = styled.button`
 `;
 
 const ContentContainer = styled.div`
-background-color: #fff;
-border-top: none,
-border: 1px solid #ccc;
-border-radius: 8px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-display: block;
-overflow: hidden;
-margin: 10px 10px;
-@media (min-width: 992px) {
- width: 19.375rem;
-}
-}`;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: block;
+  overflow: hidden;
+  margin: 10px 10px;
+  @media (min-width: 992px) {
+    width: 19.375rem;
+  }
+`;
 
 const GenresButton = styled.button`
   border: 1px solid #ccc;
@@ -66,22 +65,34 @@ const Button = styled.button`
   width: 95%;
 `;
 
-const Select = styled.select`
-  background-color: "#fff";
-  height: "30px";
-  width: "100%";
+const SelectStyle = styled.select`
+  background-color: #ced3db;
+  border: 0;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  margin: 10px 0;
 `;
 const Paragraph = styled.p`
   border-top: 1px solid #ccc;
   color: #ccc;
   padding: 10px;
 `;
+const Icon = styled.img`
+  width: 16px;
+  height: 16px;
+  padding: 16px;
+  transform: ${(props) => (props.isActive ? "rotate(90deg)" : "")};
+`;
+
 export {
   GenresButton,
   CardContainer,
   ContentContainer,
   Button,
-  Select,
+  SelectStyle,
   ContentName,
   Paragraph,
+  Icon,
 };

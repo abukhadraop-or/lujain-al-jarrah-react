@@ -9,6 +9,7 @@ const HeaderContainer = styled.div`
   color: white;
   width: 100%;
   position: fixed;
+  z-index: 1;
   @media (min-width: 992px) {
     width: 100%;
     justify-content: space-around;
@@ -29,6 +30,7 @@ const DropDownMenuContent = styled.div`
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  top: 1.25rem;
 `;
 
 const DropDownMenu = styled.div`
@@ -107,8 +109,9 @@ const MenuDesktop = styled.div`
   display: none;
   @media (min-width: 992px) {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     gap: 15px;
+  }
 `;
 export {
   HeaderContainer,
