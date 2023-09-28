@@ -1,5 +1,3 @@
-
-
 # Movie App
 ### Author: Lujain Al-Jarrah
 ### Version: 1.0.0
