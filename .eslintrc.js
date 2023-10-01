@@ -17,9 +17,7 @@ module.exports = {
       parserOptions: {
         sourceType: 'script',
       },
-      rules: {
-        'prettier/prettier': ['error', { singleQuote: true }],
-      },
+      rules: {},
     },
   ],
   parserOptions: {
@@ -36,34 +34,3 @@ module.exports = {
   },
   rules: {},
 };
-// module.exports = {
-//   env: {
-//     browser: true,
-//     es2021: true,
-//     node: true,
-//   },
-//   extends: [
-//     "airbnb",
-//     "plugin:react/recommended",
-//     "plugin:prettier/recommended",
-//   ],
-//   parserOptions: {
-//     ecmaFeatures: {
-//       jsx: true,
-//     },
-//     ecmaVersion: "latest",
-//     sourceType: "module",
-//   },
-//   plugins: ["react", "prettier"],
-//   settings: {
-//     "import/resolver": {
-//       node: {
-//         paths: ["src"],
-//         extensions: [".js", ".jsx", ".ts", ".tsx"],
-//       },
-//     },
-//   },
-//   rules: {
-//     "prettier/prettier": "error",
-//   },
-// };

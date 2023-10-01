@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-const Paragraph = styled.p`
+const Text = styled.p`
   border-top: 1px solid #ccc;
   color: #ccc;
   padding: 10px;
@@ -17,7 +17,7 @@ const SelectStyle = styled.select`
 const Title = styled.div`
   padding: 1rem;
 `;
-const ContentName = styled.button`
+const Label = styled.button`
   background-color: #fff;
   border: none;
   color: black;
@@ -30,4 +30,11 @@ const ContentName = styled.button`
   text-align: left;
   width: 100%;
 `;
-export { Paragraph, SelectStyle, Title, ContentName };
+const Icon = styled.img`
+  cursor: pointer;
+  height: 1rem;
+  padding: 1rem;
+  transform: ${(props) => (props.isActive ? 'rotate(90deg)' : '')};
+  width: 1rem;
+`;
+export { Text, SelectStyle, Title, Label, Icon };

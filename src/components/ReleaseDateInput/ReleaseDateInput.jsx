@@ -1,13 +1,12 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import { DatePicker } from "antd";
+import React, { useState } from 'react';
 import {
   SelectStyle,
-  Paragraph,
-} from "components/shared-styled-comp/shared-styled-comp";
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Label from "components/ReleaseDate/styles";
+  Text,
+} from 'components/shared-styled-comp/shared-styled-comp';
+
+import { DatePicker } from 'antd';
+import Label from 'components/ReleaseDateInput/styles';
+import PropTypes from 'prop-types';
 
 /**
  * Functional component for filtering by release dates.
@@ -17,17 +16,18 @@ import Label from "components/ReleaseDate/styles";
  * @param {function} props.setRelease - Callback function to set release types.
  * @param {Array} props.release - Current release types.
  */
-export default function ReleaseDate({ country, setRelease, release }) {
+export default function ReleaseDateInput({ country, setRelease, release }) {
   const [searchAllRelease, setSearchAllRelease] = useState(true);
   const [searchAllCountry, setSearchAllCountry] = useState(true);
   const releasArr = [
-    { name: "Theatrical (limited)", value: 2 },
-    { name: "Theatrical", value: 3 },
-    { name: "Premiere", value: 1 },
-    { name: "Digital", value: 4 },
-    { name: "Physical", value: 5 },
-    { name: "TV", value: 6 },
+    { name: 'Theatrical (limited)', value: 2 },
+    { name: 'Theatrical', value: 3 },
+    { name: 'Premiere', value: 1 },
+    { name: 'Digital', value: 4 },
+    { name: 'Physical', value: 5 },
+    { name: 'TV', value: 6 },
   ];
+
   /**
    * Handles the change of release type selection.
    * @param {object} e - Event object.
@@ -45,8 +45,8 @@ export default function ReleaseDate({ country, setRelease, release }) {
    * Handles the change of country search option.
    * @param {object} e - Event object.
    */
-  // eslint-disable-next-line no-unused-vars
   const searchAllCountryHandler = (e) => {
+    console.log(e);
     setSearchAllCountry(!searchAllCountry);
     // if (e.target.value) {
     //   setRelease([]);
@@ -64,22 +64,24 @@ export default function ReleaseDate({ country, setRelease, release }) {
       setRelease([]);
     }
   };
+
   return (
     <div>
-      <Paragraph>Release Dates</Paragraph>
-      <input
-        type="checkbox"
-        id="release"
-        name="release"
-        value="release"
-        defaultChecked={searchAllRelease}
-        onChange={searchAllReleaseHandler}
-      />
+      <Text>Release Dates</Text>
+
       <label htmlFor="release" key="release-label">
+        <input
+          type="checkbox"
+          id="release"
+          name="release"
+          value="release"
+          defaultChecked={searchAllRelease}
+          onChange={searchAllReleaseHandler}
+        />
         Search all releases?
       </label>
       {!searchAllRelease && (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <label htmlFor="country" key="country-label">
             <input
               type="checkbox"
@@ -124,7 +126,7 @@ export default function ReleaseDate({ country, setRelease, release }) {
           ))}
         </div>
       )}
-      <div key="date-pickers" style={{ marginTop: "10px" }}>
+      <div key="date-pickers" style={{ marginTop: '10px' }}>
         <Label>
           from
           <DatePicker name="start_date" data-testid="start_date" />
@@ -138,7 +140,7 @@ export default function ReleaseDate({ country, setRelease, release }) {
     </div>
   );
 }
-ReleaseDate.propTypes = {
+ReleaseDateInput.propTypes = {
   country: PropTypes.arrayOf(
     PropTypes.shape({
       iso_3166_1: PropTypes.string,
@@ -148,7 +150,7 @@ ReleaseDate.propTypes = {
   setRelease: PropTypes.func,
   release: PropTypes.arrayOf(PropTypes.string),
 };
-ReleaseDate.defaultProps = {
+ReleaseDateInput.defaultProps = {
   setRelease: () => {},
   country: [],
   release: [],

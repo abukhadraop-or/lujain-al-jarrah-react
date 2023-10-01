@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   display: flex;
@@ -7,8 +6,9 @@ const Container = styled.div`
   @media (min-width: 992px) {
     display: flex;
     flex-direction: row;
-    max-width: 90rem;
     margin: auto;
+    max-width: 90rem;
   }
 `;
-export { Container };
+
+export default Container;

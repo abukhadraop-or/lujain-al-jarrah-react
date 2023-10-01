@@ -1,21 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
-import { ContentContainer, Button, Icon } from "components/SidePanel/styles";
-import PropTypes from "prop-types";
-import SearchAllAvailabe from "components/SearchAllAvailabe/SearchAllAvailabe";
-import GenereInput from "components/GenereInput/GenereInput";
-import axios from "axios";
-import SortInput from "components/SortInput/SortInput";
-import ReleaseDate from "components/ReleaseDate/ReleaseDate";
-import Keyword from "components/Keyword/Keyword";
-import arrow from "assets/arrow.svg";
-import {
-  Paragraph,
-  Title,
-  SelectStyle,
-  ContentName,
-} from "components/shared-styled-comp/shared-styled-comp";
+import Button from 'components/SidePanel/styles';
+import Filter from 'components/Filter/Filter';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Sort from 'components/Sort/Sort';
+
 /**
  * Filter and sort component for movies.
  * @param {object} props - The properties for the component.
@@ -28,7 +16,6 @@ import {
  * @param {Array} props.release - Array of release types.
  * @returns {JSX.Element} The SidePanel component.
  */
-
 export default function SidePanel({
   getMovies,
   setSelectedGenres,
@@ -40,115 +27,20 @@ export default function SidePanel({
   setSelectedKeyword,
   selectedKeyword,
 }) {
-  const [isActiveFilter, setIsActiveFilter] = useState(false);
-  const [lang, setLang] = useState([]);
-  const [country, setCountry] = useState([]);
-  const [genres, setGenres] = useState([]);
-
-  /**
-   * Fetches movie genres from the API and sets them using the provided callback.
-   */
-  const getGenres = () => {
-    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}genre/movie/list?language=en&api_key=${apiKey}`;
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setGenres(response.data.genres);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  /**
-   * Fetches available languages from the API and sets them using the provided callback.
-   */
-  const getLanguages = () => {
-    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}configuration/languages?api_key=${apiKey}`;
-    axios.get(apiUrl).then((response) => {
-      setLang(response.data);
-    });
-  };
-
-  /**
-   * Fetches available countries from the API and sets them using the provided callback.
-   */
-  const getCountry = () => {
-    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}configuration/countries?language=en-US&api_key=${apiKey}`;
-    axios.get(apiUrl).then((response) => {
-      setCountry(response.data);
-    });
-  };
-
-  /**
-   * Toggles the display of the content filter and fetches genres, languages, and countries.
-   * @param {object} e - Event object.
-   */
-  const showContentFilter = (e) => {
-    e.preventDefault();
-    setIsActiveFilter((prevIsActive) => !prevIsActive);
-    getGenres();
-    getLanguages();
-    getCountry();
-  };
-
   return (
     <div>
       <form onSubmit={getMovies}>
-        <SortInput />
-        <ContentContainer>
-          <ContentName
-            style={{ display: "flex", justifyContent: "space-between" }}
-            onClick={showContentFilter}
-          >
-            <Title>Filter</Title>
-            <Icon src={arrow} alt="arrow" isActive={isActiveFilter} />
-          </ContentName>
-
-          <div
-            style={{
-              display: isActiveFilter ? "block" : "none",
-              padding: "0 0.625rem",
-            }}
-          >
-            <Paragraph>Show Me</Paragraph>
-            <input type="radio" id="every_thing" name="show_me" value="0" />
-            <label htmlFor="every_thing">Everything</label>
-            <br />
-            <input type="radio" id="seen" name="show_me" value="1" />
-            <label htmlFor="seen">Movies I Have not Seen</label>
-            <br />
-            <input type="radio" id="not_seen" name="show_me" value="2" />
-            <label htmlFor="not_seen">Movies I Have Seen</label>
-            <SearchAllAvailabe
-              setAvailabilities={setAvailabilities}
-              availabilities={availabilities}
-            />
-            <ReleaseDate
-              country={country}
-              setRelease={setRelease}
-              release={release}
-            />
-            <GenereInput
-              setSelectedGenres={setSelectedGenres}
-              selectedGenres={selectedGenres}
-              genres={genres}
-            />
-            <Paragraph> Languages</Paragraph>
-            <SelectStyle name="language">
-              {lang.map((opt) => (
-                <option value={opt.iso_639_1}>{opt.english_name}</option>
-              ))}
-            </SelectStyle>
-            <Keyword
-              setSelectedKeyword={setSelectedKeyword}
-              selectedKeyword={selectedKeyword}
-            />
-          </div>
-        </ContentContainer>
+        <Sort />
+        <Filter
+          setSelectedGenres={setSelectedGenres}
+          selectedGenres={selectedGenres}
+          setAvailabilities={setAvailabilities}
+          availabilities={availabilities}
+          setRelease={setRelease}
+          release={release}
+          setSelectedKeyword={setSelectedKeyword}
+          selectedKeyword={selectedKeyword}
+        />
         <Button>Search</Button>
       </form>
     </div>

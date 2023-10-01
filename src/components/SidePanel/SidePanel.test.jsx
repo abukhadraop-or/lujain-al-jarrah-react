@@ -1,13 +1,14 @@
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import { render, fireEvent, waitFor, screen } from "@testing-library/react";
-import SidePanel from "components/SidePanel/SidePanel";
+import React from 'react';
+import SidePanel from 'components/SidePanel/SidePanel';
 
 const { getByText, getByLabelText } = screen;
 
-describe("SidePanel", () => {
+describe('SidePanel', () => {
   const mockProps = {
     getMovies: jest.fn(),
     setSelectedGenres: jest.fn(),
@@ -18,26 +19,26 @@ describe("SidePanel", () => {
     release: [],
   };
 
-  test("renders component with default values", () => {
+  test('renders component with default values', () => {
     render(<SidePanel {...mockProps} />);
-    expect(getByText("Sort")).toBeInTheDocument();
-    expect(getByText("Filter")).toBeInTheDocument();
+    expect(getByText('Sort')).toBeInTheDocument();
+    expect(getByText('Filter')).toBeInTheDocument();
   });
 
   test('toggles content display when "Sort" is clicked', async () => {
     render(<SidePanel />);
-    const sortButton = getByText("Sort");
+    const sortButton = getByText('Sort');
     fireEvent.click(sortButton);
 
-    const sortSelect = getByLabelText("Sort Results By");
+    const sortSelect = getByLabelText('Sort Results By');
     await waitFor(() => expect(sortSelect).toBeInTheDocument());
   });
   test('toggles content filter display when "Filter" is clicked', async () => {
     render(<SidePanel />);
-    const filterButton = getByText("Filter");
+    const filterButton = getByText('Filter');
     fireEvent.click(filterButton);
 
-    const showMeRadio = getByLabelText("Movies I Have not Seen");
+    const showMeRadio = getByLabelText('Movies I Have not Seen');
     await waitFor(() => expect(showMeRadio).toBeInTheDocument());
   });
 });

@@ -1,11 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import React, { useState } from "react";
-import MovieCard from "components/MovieCard/MovieCard";
-import dayjs from "dayjs";
-import { Button, CardContainer } from "components/MovieList/styles";
-import axios from "axios";
-import blurImage from "assets/image.jpg";
-import PropTypes from "prop-types";
+import { Button, CardContainer } from 'components/MovieList/styles';
+import React, { useState } from 'react';
+
+import MovieCard from 'components/MovieCard/MovieCard';
+import PropTypes from 'prop-types';
+import blurImage from 'assets/image.jpg';
+import dayjs from 'dayjs';
+import { fetchDataFromApiList } from 'utils/function';
 
 // eslint-disable-next-line import/no-mutable-exports
 export let pageNumber = 1;
@@ -20,7 +20,8 @@ export let pageNumber = 1;
  * @returns {JSX.Element} JSX element representing the movie list.
  */
 export default function MovieList({ movies, setMovies, setParams, params }) {
-  const [isMenuOpen, setIsMenuOpen] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState('');
+
   /**
    * Handles toggling the menu open/close state for a specific movie.
    * If the movie's menu is currently open, it closes it. If closed, it opens it.
@@ -29,7 +30,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
    */
   const menuOpenHandler = (movieId) => {
     if (isMenuOpen === movieId) {
-      setIsMenuOpen("");
+      setIsMenuOpen('');
     } else {
       setIsMenuOpen(movieId);
     }
@@ -41,25 +42,13 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
   const loadMoreHandler = () => {
     // eslint-disable-next-line no-plusplus
     pageNumber++;
-    const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `${process.env.REACT_APP_BASE_URL}discover/movie?api_key=${apiKey}`;
     // eslint-disable-next-line prefer-const
     let updatedParams = {
       ...params,
       page: pageNumber,
     };
     setParams(updatedParams);
-    axios
-      .get(apiUrl, { params: updatedParams })
-      .then((response) => {
-        setMovies((prevMoviesList) => [
-          ...prevMoviesList,
-          ...response.data.results,
-        ]);
-      })
-      .catch((error) => {
-        console.error("Error fetching movie data:", error);
-      });
+    fetchDataFromApiList('discover/movie', setMovies, updatedParams);
   };
 
   return (
@@ -71,7 +60,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
               <MovieCard
                 key={movie.id}
                 title={movie.title}
-                releaseDate={dayjs(movie.release_date).format("MMMM D,YYYY")}
+                releaseDate={dayjs(movie.release_date).format('MMMM D,YYYY')}
                 description={movie.overview}
                 imageSrc={
                   movie.poster_path
@@ -91,7 +80,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
           </Button>
         </div>
       ) : (
-        "No items were found that match your query."
+        'No items were found that match your query.'
       )}
     </div>
   );

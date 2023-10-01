@@ -1,25 +1,26 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/no-extraneous-dependencies */
-import React from "react";
+import 'react-circular-progressbar/dist/styles.css';
+
 import {
   CardContainer,
   CardContent,
   CardImage,
-  MovieDescription,
-  MovieDate,
-  MovieTitle,
-  PercentageContainer,
   Icon,
   MenuContent,
   MenuItem,
+  MovieDate,
+  MovieDescription,
+  MovieTitle,
+  PercentageContainer,
   SubCardContainer,
-} from "components/MovieCard/styles";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import PropTypes from "prop-types";
-import menuCard from "assets/menu-card.svg";
-import FeatherIcon from "feather-icons-react";
-import { colorMap, menuItemsData } from "components/MovieCard/MovieCardData";
+} from 'components/MovieCard/styles';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { colorMap, menuItemsData } from 'components/MovieCard/MovieCardData';
+
+import FeatherIcon from 'feather-icons-react';
+import PropTypes from 'prop-types';
+import React from 'react';
+import menuCard from 'assets/menu-card.svg';
+
 /**
  * MovieCard Component
  * Displays a card representing a movie with its title, release date, description, and image.
@@ -84,9 +85,9 @@ export default function MovieCard({
               text={`${percentage}%`}
               background
               styles={buildStyles({
-                backgroundColor: "#081C22",
-                textSize: "30px",
-                textColor: "#FFFFFF",
+                backgroundColor: '#081C22',
+                textSize: '30px',
+                textColor: '#FFFFFF',
                 pathColor,
                 trailColor,
               })}
@@ -108,10 +109,10 @@ MovieCard.propTypes = {
   menuOpenHandler: PropTypes.func,
 };
 MovieCard.defaultProps = {
-  title: "",
-  releaseDate: "",
-  description: "",
-  imageSrc: "",
+  title: '',
+  releaseDate: '',
+  description: '',
+  imageSrc: '',
   voteAverage: 0,
   isMenuOpen: false,
   menuOpenHandler: () => {},

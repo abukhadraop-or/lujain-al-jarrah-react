@@ -1,8 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { GenresButton } from "components/SidePanel/styles";
-import React from "react";
-import PropTypes from "prop-types";
-import { Paragraph } from "components/shared-styled-comp/shared-styled-comp";
+import GenresButton from 'components/GenereInput/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Text } from 'components/shared-styled-comp/shared-styled-comp';
 
 /**
  * Functional component for selecting movie genres.
@@ -33,7 +32,7 @@ export default function GenereInput({
 
   return (
     <>
-      <Paragraph> Genres </Paragraph>
+      <Text> Genres </Text>
       {genres.map((genre) => (
         <GenresButton
           value={genre.id}

@@ -1,9 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
-import { Paragraph } from "components/shared-styled-comp/shared-styled-comp";
-import PropTypes from "prop-types";
+import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { Text } from 'components/shared-styled-comp/shared-styled-comp';
 
 /**
  * Functional component for searching and filtering by availability options.
@@ -11,12 +12,12 @@ import PropTypes from "prop-types";
  * @param {Function} props.setAvailabilities - Function to set availabilities.
  * @param {Array} props.availabilities - Array of availabilities.
  */
-export default function SearchAllAvailabe({
+export default function SearchAllAvailableInput({
   setAvailabilities,
   availabilities,
 }) {
   const [searchAllActive, setSearchAllActive] = useState(true);
-  const availableArr = ["flatrate", "free", "ads", "rent", "buy"];
+  const availableArr = ['flatrate', 'free', 'ads', 'rent', 'buy'];
 
   /**
    * Handles the change of availabilities selection.
@@ -47,7 +48,7 @@ export default function SearchAllAvailabe({
 
   return (
     <>
-      <Paragraph> Availabilities </Paragraph>
+      <Text> Availabilities </Text>
       <input
         type="checkbox"
         id="all"
@@ -69,7 +70,7 @@ export default function SearchAllAvailabe({
         Search all availabilities?
       </label>
       {!searchAllActive && (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {availableArr.map((opt) => (
             <label htmlFor={opt} key={opt}>
               <input
@@ -89,11 +90,11 @@ export default function SearchAllAvailabe({
     </>
   );
 }
-SearchAllAvailabe.propTypes = {
+SearchAllAvailableInput.propTypes = {
   setAvailabilities: PropTypes.func,
   availabilities: PropTypes.arrayOf(PropTypes.string),
 };
-SearchAllAvailabe.defaultProps = {
+SearchAllAvailableInput.defaultProps = {
   setAvailabilities: () => {},
   availabilities: [],
 };

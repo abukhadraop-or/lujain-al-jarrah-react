@@ -1,6 +1,9 @@
 # Movie App
+
 ### Author: Lujain Al-Jarrah
+
 ### Version: 1.0.0
+
 This project is a Movie App that allows users to browse and filter movies based on various criteria.
 
 ## Table of Contents
@@ -64,5 +67,3 @@ npm test
 ```
 
 This will launch the test runner and execute the defined unit tests.
-
-

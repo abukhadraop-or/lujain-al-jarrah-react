@@ -1,13 +1,16 @@
-import React from "react";
 import {
+  Button,
   Container,
   Header,
+  Image,
   Item,
   ItemContainer,
-  Button,
-} from "components/Footer/styles";
-import FooterData from "components/Footer/FooterData";
-import TMDBFooter from "assets/TMDBFooter.svg";
+  Title,
+} from 'components/Footer/styles';
+
+import FooterData from 'components/Footer/FooterData';
+import React from 'react';
+import TMDBFooter from 'assets/TMDBFooter.svg';
 
 /**
  * Footer component for the web application.
@@ -17,25 +20,19 @@ export default function Footer() {
   return (
     <Container>
       <div>
-        <img
-          src={TMDBFooter}
-          alt="footer-img"
-          width={130}
-          height={94}
-          className="TMDB-desktop"
-        />
+        <Image src={TMDBFooter} alt="footer-img" className="TMDB-desktop" />
         <Button> JOIN THE COMMUNITY</Button>
       </div>
 
       {FooterData.map((section) => (
-        <div key={section.title}>
+        <Title key={section.title}>
           <Header>{section.title}</Header>
           <ItemContainer>
             {section.items.map((item) => (
               <Item key={item}>{item}</Item>
             ))}
           </ItemContainer>
-        </div>
+        </Title>
       ))}
     </Container>
   );

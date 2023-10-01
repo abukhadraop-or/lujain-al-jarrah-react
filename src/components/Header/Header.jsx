@@ -1,35 +1,35 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-import React, { useState } from "react";
-import FeatherIcon from "feather-icons-react";
-import TMDBicon from "assets/TMDBicon.png";
-import TMDB from "assets/TMDB-desktop.svg";
-import MenuItem from "components/Header/MenuItem";
-import { menuData, otherMenuItems } from "components/Header/HeaderData";
 import {
-  HeaderContainer,
-  DropDownMenuContent,
-  DropDownMenu,
   DropDownLink,
-  IconContainter,
-  Sidebar,
-  OthersMenu,
-  MenuDesktop,
+  DropDownMenu,
+  DropDownMenuContent,
+  HeaderContainer,
   Icon,
+  IconContainter,
   Image,
-} from "components/Header/styles";
+  MenuDesktop,
+  OthersMenu,
+  Sidebar,
+} from 'components/Header/styles';
+import React, { useState } from 'react';
+import { menuData, otherMenuItems } from 'components/Header/HeaderData';
+
+import FeatherIcon from 'feather-icons-react';
+import MenuItem from 'components/Header/MenuItem';
+import TMDB from 'assets/TMDB-desktop.svg';
+import TMDBicon from 'assets/TMDBicon.png';
+
 /**
  * Header component that displays a navigation bar with menu items.
  */
 function Header() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState([]);
 
   /**
    * Toggle the sidebar open/close state.
    */
   const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   /**
@@ -103,7 +103,7 @@ function Header() {
         <DropDownMenu key="user-dropdown">
           <FeatherIcon
             icon="user"
-            style={{ padding: "0 10px" }}
+            style={{ padding: '0 10px' }}
             className="user-icon"
           />
           <DropDownMenuContent className="dropdown-content">
@@ -117,7 +117,7 @@ function Header() {
         </DropDownMenu>
         <FeatherIcon icon="search" color="#01b4e4" />
       </IconContainter>
-      <Sidebar isOpen={sidebarOpen} className="side-bar" key="sidebar">
+      <Sidebar isOpen={isSidebarOpen} className="side-bar" key="sidebar">
         {menuData.map((menuItem) => (
           <MenuItem
             key={menuItem.id}

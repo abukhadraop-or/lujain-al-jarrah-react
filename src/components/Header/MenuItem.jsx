@@ -1,13 +1,14 @@
+import {
+  MenuTitle,
+  SidebarLink,
+  SubMenu,
+  SubMenuLink,
+} from 'components/Header/styles';
+
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
-import React from "react";
+import React from 'react';
 
-import {
-  SubMenu,
-  SidebarLink,
-  MenuTitle,
-  SubMenuLink,
-} from "components/Header/styles";
 /**
  * MenuItem component represents a single menu item with a dropdown.
  *
@@ -32,4 +33,5 @@ function MenuItem({ title, subMenuItems, isOpen, onClick }) {
     </SidebarLink>
   );
 }
+
 export default MenuItem;

@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const HeaderContainer = styled.div`
   background-color: #032541;
   color: white;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 20px 0px;
   position: fixed;
   width: 100%;
@@ -70,7 +70,7 @@ const Sidebar = styled.div`
   height: 100%;
   position: fixed;
   top: 80px;
-  left: ${({ isOpen }) => (isOpen ? "0" : "-350px")};
+  left: ${({ isOpen }) => (isOpen ? '0' : '-350px')};
   transition: left 0.3s ease-in-out;
   width: 350px;
   z-index: 1;
@@ -120,9 +120,9 @@ const Icon = styled.span`
 `;
 
 const Image = styled.img`
-  width: 154px;
-  height: 20px;
   cursor: pointer;
+  height: 20px;
+  width: 154px;
 `;
 export {
   HeaderContainer,

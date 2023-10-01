@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   background-image: radial-gradient(at 30%top, #031d33 0%, rgba(3, 37, 65) 70%);
@@ -33,13 +33,21 @@ const Item = styled.li`
 `;
 const Button = styled.button`
   background-color: #fff;
-  border: 2px solid #fff;
   border-radius: 5px;
+  border: 2px solid #fff;
   color: #235ea7;
+  cursor: pointer;
   font-size: 1.25rem;
   font-weight: bold;
   margin: 1rem 2.5rem;
   padding: 0.5rem 1rem;
+`;
+const Title = styled.div`
   cursor: pointer;
 `;
-export { Container, Header, Item, ItemContainer, Button };
+const Image = styled.img`
+  width: 130px;
+  height: 94px;
+  cursor: pointer;
+`;
+export { Container, Header, Item, ItemContainer, Button, Title, Image };

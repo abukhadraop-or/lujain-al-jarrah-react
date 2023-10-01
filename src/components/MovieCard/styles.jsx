@@ -1,16 +1,16 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const SubCardContainer = styled.div`
-  position: relative;
-  margin: 0.625rem;
-  display: flex;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ccc;
   border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 0.625rem;
+  position: relative;
   .percentage-container {
     display: none;
   }
-  filter: ${(props) => (props.isMenuOpen ? "blur(8px)" : "")};
+  filter: ${(props) => (props.isMenuOpen ? 'blur(8px)' : '')};
   @media (min-width: 992px) {
     flex-direction: column;
     width: 12.5rem;
@@ -21,8 +21,8 @@ const SubCardContainer = styled.div`
 `;
 
 const CardImage = styled.img`
-  width: 25%;
   padding-right: 0.625rem;
+  width: 25%;
   @media (min-width: 992px) {
     width: 100%;
     height: 18.75rem;
@@ -31,11 +31,11 @@ const CardImage = styled.img`
 `;
 
 const CardContent = styled.div`
-  position: relative;
-  padding: 1.625rem 0.625rem 0.75rem;
-  height: 6.125rem;
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  height: 6.125rem;
+  padding: 1.625rem 0.625rem 0.75rem;
+  position: relative;
   .menu-card {
     display: none;
   }
@@ -68,20 +68,20 @@ const MovieDescription = styled.div`
   }
 `;
 const PercentageContainer = styled.div`
-  width: 2.375rem;
-  top: -15%;
+  font-weight: 600;
+  height: 2.375rem;
   position: absolute;
   left: 5%;
-  height: 2.375rem;
-  font-weight: 600;
+  top: -15%;
+  width: 2.375rem;
 `;
 const Icon = styled.img`
-  width: 25.59px;
+  cursor: pointer;
+  height: 25.59px;
+  position: absolute;
   right: 10px;
   top: 10px;
-  position: absolute;
-  height: 25.59px;
-  cursor: pointer;
+  width: 25.59px;
   z-index: 1;
 `;
 const CardContainer = styled.div`
@@ -97,22 +97,22 @@ const CardContainer = styled.div`
 `;
 
 const MenuContent = styled.div`
-  display: block;
-  position: absolute;
   background-color: #f9f9f9;
-  left: 50px;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  display: block;
+  min-width: 160px;
+  position: absolute;
+  left: 50px;
   top: 35px;
+  z-index: 1;
 `;
 
 const MenuItem = styled.a`
   color: black;
-  padding: 12px 16px;
-  text-decoration: none;
   display: flex;
   gap: 20px;
+  padding: 12px 16px;
+  text-decoration: none;
   &:hover {
     background-color: #f1f1f1;
   }
