@@ -46,7 +46,7 @@ export default function ReleaseDateInput({ country, setRelease, release }) {
    * @param {object} e - Event object.
    */
   const searchAllCountryHandler = (e) => {
-    console.log(e);
+    console.log(e.target.value);
     setSearchAllCountry(!searchAllCountry);
     // if (e.target.value) {
     //   setRelease([]);
@@ -90,13 +90,7 @@ export default function ReleaseDateInput({ country, setRelease, release }) {
               value="country"
               data-testid="country"
               defaultChecked={searchAllCountry}
-              onChange={(e) => {
-                searchAllCountryHandler(
-                  e,
-                  setSearchAllCountry,
-                  searchAllCountry,
-                );
-              }}
+              onChange={searchAllCountryHandler}
             />
             Search all countries?
           </label>
@@ -117,9 +111,7 @@ export default function ReleaseDateInput({ country, setRelease, release }) {
                 id={opt.name}
                 name={opt.name}
                 value={opt.value}
-                onChange={(e) => {
-                  changeRelease(e, setRelease, release);
-                }}
+                onChange={changeRelease}
               />
               {opt.name}
             </label>
@@ -140,6 +132,7 @@ export default function ReleaseDateInput({ country, setRelease, release }) {
     </div>
   );
 }
+
 ReleaseDateInput.propTypes = {
   country: PropTypes.arrayOf(
     PropTypes.shape({
@@ -150,6 +143,7 @@ ReleaseDateInput.propTypes = {
   setRelease: PropTypes.func,
   release: PropTypes.arrayOf(PropTypes.string),
 };
+
 ReleaseDateInput.defaultProps = {
   setRelease: () => {},
   country: [],

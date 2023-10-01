@@ -37,9 +37,7 @@ export default function GenereInput({
         <GenresButton
           value={genre.id}
           key={genre.id}
-          onClick={(e) => {
-            addGenres(e, setSelectedGenres, selectedGenres);
-          }}
+          onClick={addGenres}
           isActive={selectedGenres.includes(String(genre.id))}
         >
           {genre.name}
@@ -64,6 +62,7 @@ GenereInput.propTypes = {
     }),
   ),
 };
+
 GenereInput.defaultProps = {
   setSelectedGenres: () => {},
   selectedGenres: [],

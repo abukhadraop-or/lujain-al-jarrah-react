@@ -39,7 +39,6 @@ This project is a Movie App that allows users to browse and filter movies based 
 
    ```bash
    cd lujain-al-jarrah-react
-   cd movie-app
    ```
 
 3. Install the project dependencies:

@@ -108,6 +108,7 @@ MovieCard.propTypes = {
   isMenuOpen: PropTypes.bool,
   menuOpenHandler: PropTypes.func,
 };
+
 MovieCard.defaultProps = {
   title: '',
   releaseDate: '',

@@ -102,6 +102,7 @@ MovieList.propTypes = {
     page: PropTypes.number,
   }),
 };
+
 MovieList.defaultProps = {
   movies: [],
   setMovies: () => {},

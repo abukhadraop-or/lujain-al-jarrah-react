@@ -4,8 +4,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import ReleaseDateInput from './ReleaseDateInput';
 
-// import { act } from "react-dom/test-utils";
-
 const { getByText, getByLabelText, getByTestId } = screen;
 
 describe('ReleaseDateInput', () => {
@@ -61,16 +59,4 @@ describe('ReleaseDateInput', () => {
 
     expect(searchAllCountriesCheckbox.checked).toBe(false);
   });
-  // it("Should be able to display the chosen date.", async () => {
-  //   await act(async () => {
-  //     const inputElement = getByTestId("start_date");
-  //     userEvent.click(inputElement);
-
-  //     userEvent.type(inputElement, "2023-05-01");
-
-  //     await waitFor(() => {
-  //       expect(inputElement).toBeInTheDocument("2023-05-01");
-  //     });
-  //   });
-  // });
 });

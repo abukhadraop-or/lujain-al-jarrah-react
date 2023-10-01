@@ -5,6 +5,7 @@ import {
   SubMenuLink,
 } from 'components/Header/styles';
 
+import PropTypes from 'prop-types';
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React from 'react';
@@ -17,7 +18,7 @@ import React from 'react';
  * @param {boolean} isOpen - Whether the sub-menu is open.
  * @param {function} onClick - Function to handle menu item click.
  */
-function MenuItem({ title, subMenuItems, isOpen, onClick }) {
+export default function MenuItem({ title, subMenuItems, isOpen, onClick }) {
   return (
     <SidebarLink onClick={onClick}>
       <MenuTitle>{title}</MenuTitle>
@@ -34,4 +35,16 @@ function MenuItem({ title, subMenuItems, isOpen, onClick }) {
   );
 }
 
-export default MenuItem;
+MenuItem.propTypes = {
+  title: PropTypes.string,
+  subMenuItems: PropTypes.arrayOf(PropTypes.string),
+  isOpen: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+
+MenuItem.defaultProps = {
+  title: '',
+  subMenuItems: [],
+  isOpen: [],
+  onClick: () => {},
+};

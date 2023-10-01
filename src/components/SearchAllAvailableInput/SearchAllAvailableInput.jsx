@@ -56,14 +56,7 @@ export default function SearchAllAvailableInput({
         value="all"
         data-testid="all"
         defaultChecked={searchAllActive}
-        onChange={(e) => {
-          searchAllActiveHandler(
-            e,
-            setSearchAllActive,
-            searchAllActive,
-            setAvailabilities,
-          );
-        }}
+        onChange={searchAllActiveHandler}
       />
 
       <label htmlFor="all" key="all-checkbox-label">
@@ -90,10 +83,12 @@ export default function SearchAllAvailableInput({
     </>
   );
 }
+
 SearchAllAvailableInput.propTypes = {
   setAvailabilities: PropTypes.func,
   availabilities: PropTypes.arrayOf(PropTypes.string),
 };
+
 SearchAllAvailableInput.defaultProps = {
   setAvailabilities: () => {},
   availabilities: [],

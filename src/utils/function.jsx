@@ -5,14 +5,14 @@ import axios from 'axios';
  *
  * @param {string} apiUrl - The endpoint URL of the API.
  * @param {Function} setData - The callback function to set the fetched data.
- * @param {string} [extra] - Optional parameter to specify nested data object key if present.
+ * @param {string} [key] - Optional parameter to specify nested data object key if present.
  */
-const fetchDataFromApi = (apiUrl, setData, extra) => {
+const fetchDataFromApi = (apiUrl, setData, key) => {
   const Url = `${process.env.REACT_APP_BASE_URL}${apiUrl}?api_key=${process.env.REACT_APP_API_KEY}`;
   axios
     .get(Url)
     .then(({ data }) => {
-      setData(extra ? data[extra] : data);
+      setData(key ? data[key] : data);
     })
     .catch((error) => {
       console.error(`Error fetching data from API: ${error.message}`);

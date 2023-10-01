@@ -90,6 +90,7 @@ export default function Filter({
     </FilterContainer>
   );
 }
+
 Filter.propTypes = {
   setSelectedGenres: PropTypes.func,
   selectedGenres: PropTypes.arrayOf(PropTypes.string),

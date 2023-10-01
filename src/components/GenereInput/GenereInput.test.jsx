@@ -11,7 +11,6 @@ describe('GenereInput', () => {
     { id: 1, name: 'Action' },
     { id: 2, name: 'Comedy' },
   ];
-
   it('renders correctly', () => {
     render(
       <GenereInput
