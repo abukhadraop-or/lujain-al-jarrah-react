@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { ContentName, SelectStyle } from "components/SidePanel/styles";
-import { Paragraph } from "components/shared-styled-comp/shared-styled-comp";
-
+import {
+  ContentName,
+  SelectStyle,
+  Title,
+  Paragraph,
+} from "components/shared-styled-comp/shared-styled-comp";
 import React, { useState } from "react";
 import arrow from "assets/arrow.svg";
 import { Icon, SortContainer } from "components/SortInput/styles";
@@ -36,8 +39,10 @@ export default function SortInput() {
   return (
     <SortContainer>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <ContentName onClick={showContent}>Sort</ContentName>
-        <Icon src={arrow} alt="arrow" isActive={isActive} />
+        <ContentName onClick={showContent}>
+          <Title> Sort</Title>
+          <Icon src={arrow} alt="arrow" isActive={isActive} />
+        </ContentName>
       </div>
 
       <div style={{ display: isActive ? "block" : "none" }}>

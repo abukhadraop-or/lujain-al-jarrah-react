@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const CardContainer = styled.div`
+const SubCardContainer = styled.div`
   position: relative;
   margin: 0.625rem;
   display: flex;
@@ -25,7 +25,7 @@ const CardImage = styled.img`
   padding-right: 0.625rem;
   @media (min-width: 992px) {
     width: 100%;
-    height: 75%;
+    height: 18.75rem;
     background-size: cover;
   }
 `;
@@ -36,6 +36,9 @@ const CardContent = styled.div`
   height: 6.125rem;
   flex-direction: column;
   display: flex;
+  .menu-card {
+    display: none;
+  }
 `;
 
 const MovieTitle = styled.div`
@@ -72,14 +75,25 @@ const PercentageContainer = styled.div`
   height: 2.375rem;
   font-weight: 600;
 `;
-const ImageCard = styled.img`
+const Icon = styled.img`
   width: 25.59px;
-  right: 0;
+  right: 10px;
+  top: 10px;
   position: absolute;
   height: 25.59px;
+  cursor: pointer;
+  z-index: 1;
 `;
-const MenuContainer = styled.div`
+const CardContainer = styled.div`
   position: relative;
+  .menu-card {
+    display: none;
+  }
+  @media (min-width: 992px) {
+    .menu-card {
+      display: block;
+    }
+  }
 `;
 
 const MenuContent = styled.div`
@@ -90,7 +104,7 @@ const MenuContent = styled.div`
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  top: 1.25rem;
+  top: 35px;
 `;
 
 const MenuItem = styled.a`
@@ -112,8 +126,8 @@ export {
   MovieDate,
   MovieTitle,
   PercentageContainer,
-  ImageCard,
+  Icon,
   MenuContent,
   MenuItem,
-  MenuContainer,
+  SubCardContainer,
 };

@@ -42,6 +42,7 @@ const DropDownMenu = styled.div`
   @media (min-width: 992px) {
     display: flex;
     justify-content: space-around;
+    cursor: pointer;
   }
 `;
 
@@ -114,6 +115,15 @@ const MenuDesktop = styled.div`
     gap: 15px;
   }
 `;
+const Icon = styled.span`
+  cursor: pointer;
+`;
+
+const Image = styled.img`
+  width: 154px;
+  height: 20px;
+  cursor: pointer;
+`;
 export {
   HeaderContainer,
   DropDownMenuContent,
@@ -127,4 +137,6 @@ export {
   SubMenuLink,
   OthersMenu,
   MenuDesktop,
+  Icon,
+  Image,
 };

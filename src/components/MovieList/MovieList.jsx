@@ -20,7 +20,7 @@ export let pageNumber = 1;
  * @returns {JSX.Element} JSX element representing the movie list.
  */
 export default function MovieList({ movies, setMovies, setParams, params }) {
-  const [isMenuOpen, setIsMenuOpen] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState("");
   /**
    * Handles toggling the menu open/close state for a specific movie.
    * If the movie's menu is currently open, it closes it. If closed, it opens it.
@@ -28,12 +28,11 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
    * @param {string} movieId - The unique identifier of the movie.
    */
   const menuOpenHandler = (movieId) => {
-    if (isMenuOpen.includes(movieId)) {
-      setIsMenuOpen((prev) => prev.filter((id) => id !== movieId));
+    if (isMenuOpen === movieId) {
+      setIsMenuOpen("");
     } else {
-      setIsMenuOpen((prev) => [...prev, movieId]);
+      setIsMenuOpen(movieId);
     }
-    console.log(isMenuOpen);
   };
 
   /**
@@ -83,7 +82,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
                 menuOpenHandler={() => {
                   menuOpenHandler(movie.id);
                 }}
-                isMenuOpen={isMenuOpen.includes(movie.id)}
+                isMenuOpen={isMenuOpen === movie.id}
               />
             ))}
           </CardContainer>

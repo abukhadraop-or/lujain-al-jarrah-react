@@ -16,19 +16,6 @@ const CardContainer = styled.button`
   text-align: left;
   width: 95%;
 `;
-const ContentName = styled.button`
-  background-color: #fff;
-  border: none;
-  color: black;
-  cursor: pointer;
-  display: block;
-  font-size: 1.0625rem;
-  font-weight: bolder;
-  outline: none;
-  padding: 1.125rem;
-  text-align: left;
-  width: 100%;
-`;
 
 const ContentContainer = styled.div`
   background-color: #fff;
@@ -57,6 +44,7 @@ const Button = styled.button`
   border-radius: 0.625rem;
   border: 1px;
   color: #fff;
+  cursor: pointer;
   display: block;
   font-size: 1.5rem;
   font-weight: bold;
@@ -65,28 +53,12 @@ const Button = styled.button`
   width: 95%;
 `;
 
-const SelectStyle = styled.select`
-  background-color: #ced3db;
-  border-radius: 0.25rem;
-  border: 0;
-  font-size: 0.9em;
-  margin: 0.625rem 0;
-  padding: 0.375rem 0.75rem;
-  width: 100%;
-`;
 const Icon = styled.img`
+  cursor: pointer;
   height: 1rem;
   padding: 1rem;
   transform: ${(props) => (props.isActive ? "rotate(90deg)" : "")};
   width: 1rem;
 `;
 
-export {
-  GenresButton,
-  CardContainer,
-  ContentContainer,
-  Button,
-  SelectStyle,
-  ContentName,
-  Icon,
-};
+export { GenresButton, CardContainer, ContentContainer, Button, Icon };

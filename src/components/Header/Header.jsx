@@ -15,6 +15,8 @@ import {
   Sidebar,
   OthersMenu,
   MenuDesktop,
+  Icon,
+  Image,
 } from "components/Header/styles";
 /**
  * Header component that displays a navigation bar with menu items.
@@ -35,7 +37,6 @@ function Header() {
    *
    * @param {string} menuId - The ID of the menu item to toggle.
    */
-
   const toggleMenu = (menuId) => {
     if (openMenus.includes(menuId)) {
       setOpenMenus((prev) => prev.filter((id) => id !== menuId));
@@ -47,13 +48,7 @@ function Header() {
   return (
     <HeaderContainer>
       <MenuDesktop>
-        <img
-          src={TMDB}
-          alt=""
-          width={154}
-          height={20}
-          className="TMDB-desktop"
-        />
+        <Image src={TMDB} alt="" className="TMDB-desktop" />
         {menuData.map((menuItem) => (
           <DropDownMenu key={menuItem.title}>
             <div>{menuItem.title}</div>
@@ -77,12 +72,18 @@ function Header() {
           </DropDownMenuContent>
         </DropDownMenu>
       </MenuDesktop>
-      <MenuDesktop key="menu-desktop-2">
-        <FeatherIcon icon="plus" />
-        <FeatherIcon icon="globe" />
-        <span>Login</span>
-        <span>JoinTMDB</span>
-        <FeatherIcon icon="search" style={{ color: "#01b4e4" }} />
+      <MenuDesktop>
+        <Icon>
+          <FeatherIcon icon="plus" />
+        </Icon>
+        <Icon>
+          <FeatherIcon icon="globe" />
+        </Icon>
+        <Icon>Login</Icon>
+        <Icon>JoinTMDB</Icon>
+        <Icon>
+          <FeatherIcon icon="search" color="#01b4e4" />
+        </Icon>
       </MenuDesktop>
       <FeatherIcon
         icon="menu"
@@ -114,7 +115,7 @@ function Header() {
             </DropDownLink>
           </DropDownMenuContent>
         </DropDownMenu>
-        <FeatherIcon icon="search" style={{ color: "#01b4e4" }} />
+        <FeatherIcon icon="search" color="#01b4e4" />
       </IconContainter>
       <Sidebar isOpen={sidebarOpen} className="side-bar" key="sidebar">
         {menuData.map((menuItem) => (

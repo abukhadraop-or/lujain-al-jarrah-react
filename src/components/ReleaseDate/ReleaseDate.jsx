@@ -1,8 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { DatePicker } from "antd";
-import { SelectStyle } from "components/SidePanel/styles";
-import { Paragraph } from "components/shared-styled-comp/shared-styled-comp";
+import {
+  SelectStyle,
+  Paragraph,
+} from "components/shared-styled-comp/shared-styled-comp";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Label from "components/ReleaseDate/styles";

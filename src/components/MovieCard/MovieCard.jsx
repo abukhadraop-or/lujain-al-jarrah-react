@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 import {
@@ -8,10 +9,10 @@ import {
   MovieDate,
   MovieTitle,
   PercentageContainer,
-  ImageCard,
+  Icon,
   MenuContent,
   MenuItem,
-  MenuContainer,
+  SubCardContainer,
 } from "components/MovieCard/styles";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -54,21 +55,25 @@ export default function MovieCard({
   }
 
   return (
-    <>
-      <MenuContainer>
-        {isMenuOpen && (
-          <MenuContent>
-            {menuItemsData.map((item) => (
-              <MenuItem key="login-link" href="#">
-                <FeatherIcon icon={item.icon} /> <div> {item.name}</div>
-              </MenuItem>
-            ))}
-          </MenuContent>
-        )}
-      </MenuContainer>
-      <CardContainer isMenuOpen={isMenuOpen}>
+    <CardContainer>
+      {isMenuOpen && (
+        <MenuContent>
+          {menuItemsData.map((item) => (
+            <MenuItem key="login-link" href="#">
+              <FeatherIcon icon={item.icon} /> <div> {item.name}</div>
+            </MenuItem>
+          ))}
+        </MenuContent>
+      )}
+      <Icon
+        src={menuCard}
+        alt="menu-card"
+        onClick={menuOpenHandler}
+        className="menu-card"
+      />
+
+      <SubCardContainer isMenuOpen={isMenuOpen}>
         <CardImage src={imageSrc} alt="Movie" />
-        <ImageCard src={menuCard} alt="menu-card" onClick={menuOpenHandler} />
         <CardContent>
           <MovieTitle>{title}</MovieTitle>
           <MovieDate>{releaseDate}</MovieDate>
@@ -88,8 +93,8 @@ export default function MovieCard({
             />
           </PercentageContainer>
         </CardContent>
-      </CardContainer>
-    </>
+      </SubCardContainer>
+    </CardContainer>
   );
 }
 

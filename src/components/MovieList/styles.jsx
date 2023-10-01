@@ -11,6 +11,7 @@ const Button = styled.button`
   margin: 0 0.625rem;
   padding: 0.625rem;
   width: 95%;
+  cursor: pointer;
 `;
 
 const CardContainer = styled.div`

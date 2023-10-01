@@ -40,5 +40,6 @@ const Button = styled.button`
   font-weight: bold;
   margin: 1rem 2.5rem;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 `;
 export { Container, Header, Item, ItemContainer, Button };

@@ -58,7 +58,12 @@ GenereInput.propTypes = {
       name: PropTypes.string,
     }),
   ),
-  genres: PropTypes.arrayOf(PropTypes.string),
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ),
 };
 GenereInput.defaultProps = {
   setSelectedGenres: () => {},

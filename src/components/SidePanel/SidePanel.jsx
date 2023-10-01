@@ -1,13 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from "react";
-import {
-  ContentContainer,
-  Button,
-  ContentName,
-  SelectStyle,
-  Icon,
-} from "components/SidePanel/styles";
+import { ContentContainer, Button, Icon } from "components/SidePanel/styles";
 import PropTypes from "prop-types";
 import SearchAllAvailabe from "components/SearchAllAvailabe/SearchAllAvailabe";
 import GenereInput from "components/GenereInput/GenereInput";
@@ -16,7 +10,12 @@ import SortInput from "components/SortInput/SortInput";
 import ReleaseDate from "components/ReleaseDate/ReleaseDate";
 import Keyword from "components/Keyword/Keyword";
 import arrow from "assets/arrow.svg";
-import { Paragraph } from "components/shared-styled-comp/shared-styled-comp";
+import {
+  Paragraph,
+  Title,
+  SelectStyle,
+  ContentName,
+} from "components/shared-styled-comp/shared-styled-comp";
 /**
  * Filter and sort component for movies.
  * @param {object} props - The properties for the component.
@@ -51,7 +50,7 @@ export default function SidePanel({
    */
   const getGenres = () => {
     const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${apiKey}`;
+    const apiUrl = `${process.env.REACT_APP_BASE_URL}genre/movie/list?language=en&api_key=${apiKey}`;
     axios
       .get(apiUrl)
       .then((response) => {
@@ -67,7 +66,7 @@ export default function SidePanel({
    */
   const getLanguages = () => {
     const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `https://api.themoviedb.org/3/configuration/languages?api_key=${apiKey}`;
+    const apiUrl = `${process.env.REACT_APP_BASE_URL}configuration/languages?api_key=${apiKey}`;
     axios.get(apiUrl).then((response) => {
       setLang(response.data);
     });
@@ -78,7 +77,7 @@ export default function SidePanel({
    */
   const getCountry = () => {
     const apiKey = "4db3b4ee5893cead9657d41699ec4c26";
-    const apiUrl = `https://api.themoviedb.org/3/configuration/countries?language=en-US&api_key=${apiKey}`;
+    const apiUrl = `${process.env.REACT_APP_BASE_URL}configuration/countries?language=en-US&api_key=${apiKey}`;
     axios.get(apiUrl).then((response) => {
       setCountry(response.data);
     });
@@ -101,10 +100,13 @@ export default function SidePanel({
       <form onSubmit={getMovies}>
         <SortInput />
         <ContentContainer>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <ContentName onClick={showContentFilter}>Filter</ContentName>
+          <ContentName
+            style={{ display: "flex", justifyContent: "space-between" }}
+            onClick={showContentFilter}
+          >
+            <Title>Filter</Title>
             <Icon src={arrow} alt="arrow" isActive={isActiveFilter} />
-          </div>
+          </ContentName>
 
           <div
             style={{
