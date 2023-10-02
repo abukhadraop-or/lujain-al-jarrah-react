@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Select } from 'antd';
 import { Text } from 'components/shared-styled-comp/shared-styled-comp';
-import { fetchDataFromApiList } from 'utils/function';
+import fetchDataFromApi from 'utils/function';
 
 const { Option } = Select;
 
@@ -18,17 +18,27 @@ const { Option } = Select;
 export default function Keyword({ setSelectedKeyword, selectedKeyword }) {
   const [searchVal, setSearchVal] = useState('');
   const [results, setResults] = useState([]);
+  const [ErrorMessage, setErrorMessage] = useState(null);
 
   /**
    * Handles the search of a keyword.
    * @param {object} e - Event object.
    */
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const params = {
       query: searchVal,
       page: 1,
     };
-    fetchDataFromApiList('search/keyword', setResults, params);
+    const fetchedData = await fetchDataFromApi(
+      'search/keyword',
+      'results',
+      params,
+    );
+    if (fetchedData.name === 'AxiosError') {
+      setErrorMessage(fetchedData.message);
+    } else {
+      setResults(fetchedData);
+    }
   };
 
   useEffect(() => {
@@ -53,11 +63,14 @@ export default function Keyword({ setSelectedKeyword, selectedKeyword }) {
         }}
         data-testid="keyword"
       >
-        {results.map((keyword) => (
-          <Option key={keyword.id} value={keyword.id}>
-            {keyword.name}
-          </Option>
-        ))}
+        {results &&
+          !ErrorMessage &&
+          results.map((keyword) => (
+            <Option key={keyword.id} value={keyword.id}>
+              {keyword.name}
+            </Option>
+          ))}
+        {ErrorMessage && <div> {ErrorMessage}</div>}
       </Select>
     </div>
   );

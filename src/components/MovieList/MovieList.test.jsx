@@ -1,6 +1,6 @@
-import MovieList, { pageNumber } from 'components/MovieList/MovieList';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
+import MovieList from 'components/MovieList/MovieList';
 /* eslint-disable no-undef */
 import React from 'react';
 import axios from 'axios';
@@ -62,8 +62,6 @@ describe('MovieList', () => {
 
     fireEvent.click(getByText('Load more'));
     await waitFor(() => {}, { timeout: 100 });
-
-    expect(pageNumber).toBe(2);
 
     expect(axios.get).toHaveBeenCalledWith(
       expect.stringContaining(

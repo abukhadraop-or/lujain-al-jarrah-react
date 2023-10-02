@@ -5,7 +5,8 @@ import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import MovieList from 'components/MovieList/MovieList';
 import SidePanel from 'components/SidePanel/SidePanel';
-import { fetchDataFromApiList } from 'utils/function';
+import SnackbarComp from 'components/SnackbarComp/SnackbarComp';
+import fetchDataFromApi from 'utils/function';
 
 /**
  * MovieApp Component
@@ -17,6 +18,7 @@ export default function MovieApp() {
   const [availabilities, setAvailabilities] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState([]);
   const [release, setRelease] = useState([]);
+  const [ErrorMessage, setErrorMessage] = useState(null);
   const [params, setParams] = useState({
     page: 1,
     region: '',
@@ -37,7 +39,7 @@ export default function MovieApp() {
    *
    * @param {Event} e - The event object from the form submission.
    */
-  const getMovies = (e) => {
+  const getMovies = async (e) => {
     let updatedParams = { ...params };
     if (e) {
       e.preventDefault();
@@ -56,7 +58,16 @@ export default function MovieApp() {
       };
       setParams(updatedParams);
     }
-    fetchDataFromApiList('discover/movie', setMovies, updatedParams);
+    const fetchedData = await fetchDataFromApi(
+      'discover/movie',
+      'results',
+      updatedParams,
+    );
+    if (fetchedData.name === 'AxiosError') {
+      setErrorMessage(fetchedData.message);
+    } else {
+      setMovies(fetchedData);
+    }
   };
 
   useEffect(() => {
@@ -83,9 +94,10 @@ export default function MovieApp() {
           setMovies={setMovies}
           setParams={setParams}
           params={params}
+          ErrorMessage={ErrorMessage}
         />
       </Container>
-
+      <SnackbarComp />
       <Footer />
     </>
   );

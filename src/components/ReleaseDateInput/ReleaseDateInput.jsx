@@ -16,7 +16,12 @@ import PropTypes from 'prop-types';
  * @param {function} props.setRelease - Callback function to set release types.
  * @param {Array} props.release - Current release types.
  */
-export default function ReleaseDateInput({ country, setRelease, release }) {
+export default function ReleaseDateInput({
+  country,
+  setRelease,
+  release,
+  errorMessage,
+}) {
   const [searchAllRelease, setSearchAllRelease] = useState(true);
   const [searchAllCountry, setSearchAllCountry] = useState(true);
   const releasArr = [
@@ -96,13 +101,16 @@ export default function ReleaseDateInput({ country, setRelease, release }) {
           </label>
           {!searchAllCountry && (
             <SelectStyle name="countries" key="countries-select">
-              {country.map((opt) => (
-                <option key={opt.iso_3166_1} value={opt.iso_3166_1}>
-                  {opt.english_name}
-                </option>
-              ))}
+              {country &&
+                !errorMessage &&
+                country.map((opt) => (
+                  <option key={opt.iso_3166_1} value={opt.iso_3166_1}>
+                    {opt.english_name}
+                  </option>
+                ))}
             </SelectStyle>
           )}
+          {errorMessage && !searchAllCountry && <div> {errorMessage}</div>}
           <br />
           {releasArr.map((opt) => (
             <label htmlFor={opt.name} key={opt.name}>
@@ -142,10 +150,12 @@ ReleaseDateInput.propTypes = {
   ),
   setRelease: PropTypes.func,
   release: PropTypes.arrayOf(PropTypes.string),
+  errorMessage: PropTypes.string,
 };
 
 ReleaseDateInput.defaultProps = {
   setRelease: () => {},
   country: [],
   release: [],
+  errorMessage: null,
 };

@@ -14,7 +14,7 @@ import ReleaseDateInput from 'components/ReleaseDateInput/ReleaseDateInput';
 import SearchAllAvailableInput from 'components/SearchAllAvailableInput/SearchAllAvailableInput';
 import ShowMeInput from 'components/ShowMeInput/ShowMeInput';
 import arrow from 'assets/arrow.svg';
-import { fetchDataFromApi } from 'utils/function';
+import fetchDataFromApi from 'utils/function';
 
 /**
  * Filter Component
@@ -45,17 +45,46 @@ export default function Filter({
   const [lang, setLang] = useState([]);
   const [country, setCountry] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [errorMessages, setErrorMessages] = useState({
+    langErrorMsg: null,
+    countryErrorMsg: null,
+    genreErrorMsg: null,
+  });
+
+  /**
+   * Error Handler Function to set an error message if exists otherwise the data.
+   * @param {object} item - item object(languages,countries,genresAll).
+   * @param {string} errorName - Name of error.
+   * @param {function} setData - Function to set the data from the API.
+  
+   */
+  const errorHandler = (item, errorName, setData) => {
+    if (item.name === 'AxiosError') {
+      setErrorMessages({ ...errorMessages, [errorName]: item.message });
+    } else {
+      setData(item);
+    }
+  };
 
   /**
    * Toggles the display of the content filter and fetches genres, languages, and countries.
    * @param {object} e - Event object.
    */
-  const showFilterContent = (e) => {
+  const showFilterContent = async (e) => {
     e.preventDefault();
     setIsActive((prevIsActive) => !prevIsActive);
-    fetchDataFromApi('genre/movie/list', setGenres, 'genres');
-    fetchDataFromApi('configuration/languages', setLang);
-    fetchDataFromApi('configuration/countries', setCountry);
+    try {
+      const [languages, countries, genresAll] = await Promise.all([
+        fetchDataFromApi('configuration/languages'),
+        fetchDataFromApi('configuration/countries'),
+        fetchDataFromApi('genre/movie/list', 'genres'),
+      ]);
+      errorHandler(languages, 'langErrorMsg', setLang);
+      errorHandler(countries, 'countryErrorMsg', setCountry);
+      errorHandler(genresAll, 'genreErrorMsg', setGenres);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -75,13 +104,15 @@ export default function Filter({
           country={country}
           setRelease={setRelease}
           release={release}
+          errorMessage={errorMessages.countryErrorMsg}
         />
         <GenereInput
           setSelectedGenres={setSelectedGenres}
           selectedGenres={selectedGenres}
           genres={genres}
+          errorMessage={errorMessages.genreErrorMsg}
         />
-        <LanguageInput lang={lang} />
+        <LanguageInput lang={lang} errorMessage={errorMessages.langErrorMsg} />
         <Keyword
           setSelectedKeyword={setSelectedKeyword}
           selectedKeyword={selectedKeyword}

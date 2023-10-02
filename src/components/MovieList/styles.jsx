@@ -11,7 +11,7 @@ const Button = styled.button`
   font-weight: bold;
   margin: 0 0.625rem;
   padding: 0.625rem;
-  width: 95%;
+  width: 98%;
 `;
 
 const CardContainer = styled.div`

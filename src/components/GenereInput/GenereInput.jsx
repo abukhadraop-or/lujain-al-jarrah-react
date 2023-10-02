@@ -14,6 +14,7 @@ export default function GenereInput({
   setSelectedGenres,
   selectedGenres,
   genres,
+  errorMessage,
 }) {
   /**
    * Adds or removes a genre to/from the selected genres list.
@@ -33,38 +34,38 @@ export default function GenereInput({
   return (
     <>
       <Text> Genres </Text>
-      {genres.map((genre) => (
-        <GenresButton
-          value={genre.id}
-          key={genre.id}
-          onClick={addGenres}
-          isActive={selectedGenres.includes(String(genre.id))}
-        >
-          {genre.name}
-        </GenresButton>
-      ))}
+      {genres &&
+        !errorMessage &&
+        genres.map((genre) => (
+          <GenresButton
+            value={genre.id}
+            key={genre.id}
+            onClick={addGenres}
+            isActive={selectedGenres.includes(String(genre.id))}
+          >
+            {genre.name}
+          </GenresButton>
+        ))}
+      {errorMessage && <div> {errorMessage}</div>}
     </>
   );
 }
 
 GenereInput.propTypes = {
   setSelectedGenres: PropTypes.func,
-  selectedGenres: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-  ),
+  selectedGenres: PropTypes.arrayOf(PropTypes.string),
   genres: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
       name: PropTypes.string,
     }),
   ),
+  errorMessage: PropTypes.string,
 };
 
 GenereInput.defaultProps = {
   setSelectedGenres: () => {},
   selectedGenres: [],
   genres: [],
+  errorMessage: null,
 };

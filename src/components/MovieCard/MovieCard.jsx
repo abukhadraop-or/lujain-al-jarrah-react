@@ -60,7 +60,7 @@ export default function MovieCard({
       {isMenuOpen && (
         <MenuContent>
           {menuItemsData.map((item) => (
-            <MenuItem key="login-link" href="#">
+            <MenuItem key={item.name} href="#">
               <FeatherIcon icon={item.icon} /> <div> {item.name}</div>
             </MenuItem>
           ))}

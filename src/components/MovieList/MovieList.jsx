@@ -5,10 +5,8 @@ import MovieCard from 'components/MovieCard/MovieCard';
 import PropTypes from 'prop-types';
 import blurImage from 'assets/image.jpg';
 import dayjs from 'dayjs';
-import { fetchDataFromApiList } from 'utils/function';
+import fetchDataFromApi from 'utils/function';
 
-// eslint-disable-next-line import/no-mutable-exports
-export let pageNumber = 1;
 /**
  * MovieList Component
  * Displays a list of movies in a paginated manner and provides an option to load more movies.
@@ -19,9 +17,15 @@ export let pageNumber = 1;
  * @param {Object} params - Parameters for the movie list.
  * @returns {JSX.Element} JSX element representing the movie list.
  */
-export default function MovieList({ movies, setMovies, setParams, params }) {
-  const [isMenuOpen, setIsMenuOpen] = useState('');
-
+export default function MovieList({
+  movies,
+  setMovies,
+  setParams,
+  params,
+  ErrorMessage,
+}) {
+  const [selectedMovieId, setSelectedMovieId] = useState('');
+  const [pageNumber, setPageNumber] = useState(1);
   /**
    * Handles toggling the menu open/close state for a specific movie.
    * If the movie's menu is currently open, it closes it. If closed, it opens it.
@@ -29,31 +33,35 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
    * @param {string} movieId - The unique identifier of the movie.
    */
   const menuOpenHandler = (movieId) => {
-    if (isMenuOpen === movieId) {
-      setIsMenuOpen('');
+    if (selectedMovieId === movieId) {
+      setSelectedMovieId('');
     } else {
-      setIsMenuOpen(movieId);
+      setSelectedMovieId(movieId);
     }
   };
 
   /**
    * Handles loading more movies by making an API call to fetch additional movie data.
    */
-  const loadMoreHandler = () => {
-    // eslint-disable-next-line no-plusplus
-    pageNumber++;
-    // eslint-disable-next-line prefer-const
-    let updatedParams = {
+  const loadMoreHandler = async () => {
+    let updatedParams = { ...params };
+    updatedParams = {
       ...params,
-      page: pageNumber,
+      page: pageNumber + 1,
     };
     setParams(updatedParams);
-    fetchDataFromApiList('discover/movie', setMovies, updatedParams);
+    const moviesData = await fetchDataFromApi(
+      'discover/movie',
+      'results',
+      updatedParams,
+    );
+    setMovies((prev) => [...prev, ...moviesData]);
+    setPageNumber(pageNumber + 1);
   };
 
   return (
     <div>
-      {movies.length > 0 ? (
+      {movies.length > 0 && !ErrorMessage ? (
         <div>
           <CardContainer>
             {movies.map((movie) => (
@@ -71,7 +79,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
                 menuOpenHandler={() => {
                   menuOpenHandler(movie.id);
                 }}
-                isMenuOpen={isMenuOpen === movie.id}
+                isMenuOpen={selectedMovieId === movie.id}
               />
             ))}
           </CardContainer>
@@ -80,7 +88,7 @@ export default function MovieList({ movies, setMovies, setParams, params }) {
           </Button>
         </div>
       ) : (
-        'No items were found that match your query.'
+        ErrorMessage || 'No items were found that match your query.'
       )}
     </div>
   );
@@ -101,6 +109,7 @@ MovieList.propTypes = {
   params: PropTypes.shape({
     page: PropTypes.number,
   }),
+  ErrorMessage: PropTypes.string,
 };
 
 MovieList.defaultProps = {
@@ -108,4 +117,5 @@ MovieList.defaultProps = {
   setMovies: () => {},
   setParams: () => {},
   params: { page: 1 },
+  ErrorMessage: null,
 };
