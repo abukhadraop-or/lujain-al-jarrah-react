@@ -6,13 +6,14 @@ import {
   Icon,
   IconContainter,
   Image,
-  MenuDesktop,
+  NavSection,
   OthersMenu,
   Sidebar,
 } from 'components/Header/styles';
 import React, { useState } from 'react';
 import { menuData, otherMenuItems } from 'components/Header/HeaderData';
 
+import DropDown from 'components/DropDown/DropDown';
 import FeatherIcon from 'feather-icons-react';
 import MenuItem from 'components/Header/MenuItem';
 import TMDB from 'assets/TMDB-desktop.svg';
@@ -21,7 +22,7 @@ import TMDBicon from 'assets/TMDBicon.png';
 /**
  * Header component that displays a navigation bar with menu items.
  */
-function Header() {
+export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState([]);
 
@@ -47,32 +48,14 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <MenuDesktop>
+      <NavSection>
         <Image src={TMDB} alt="" className="TMDB-desktop" />
         {menuData.map((menuItem) => (
-          <DropDownMenu key={menuItem.title}>
-            <div>{menuItem.title}</div>
-            <DropDownMenuContent className="dropdown-content">
-              {menuItem.subMenu.map((item) => (
-                <DropDownLink key={item} href="#">
-                  {item}
-                </DropDownLink>
-              ))}
-            </DropDownMenuContent>
-          </DropDownMenu>
+          <DropDown title={menuItem.title} subMenu={menuItem.subMenu} />
         ))}
-        <DropDownMenu key="more-menu">
-          <div> more </div>
-          <DropDownMenuContent className="dropdown-content">
-            {otherMenuItems.map((item) => (
-              <DropDownLink key={item} href="#">
-                {item}
-              </DropDownLink>
-            ))}
-          </DropDownMenuContent>
-        </DropDownMenu>
-      </MenuDesktop>
-      <MenuDesktop>
+        <DropDown title="more" subMenu={otherMenuItems} />
+      </NavSection>
+      <NavSection>
         <Icon>
           <FeatherIcon icon="plus" />
         </Icon>
@@ -84,7 +67,7 @@ function Header() {
         <Icon>
           <FeatherIcon icon="search" color="#01b4e4" />
         </Icon>
-      </MenuDesktop>
+      </NavSection>
       <FeatherIcon
         icon="menu"
         onClick={toggleSidebar}
@@ -130,5 +113,3 @@ function Header() {
     </HeaderContainer>
   );
 }
-
-export default Header;

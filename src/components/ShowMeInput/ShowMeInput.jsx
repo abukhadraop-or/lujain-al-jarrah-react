@@ -4,9 +4,6 @@ import data from 'components/ShowMeInput/show-me-input-data';
 
 /**
  * ShowMeInput Component
- *
- * @component
- * @returns {JSX.Element} Rendered ShowMeInput component
  */
 export default function ShowMeInput() {
   return (

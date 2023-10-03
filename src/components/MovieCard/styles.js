@@ -10,8 +10,8 @@ const SubCardContainer = styled.div`
   .percentage-container {
     display: none;
   }
-  filter: ${(props) => (props.isMenuOpen ? 'blur(8px)' : '')};
-  @media (min-width: 992px) {
+  filter: ${(props) => (props.isMenuOpen ? 'blur(0.5rem)' : '')};
+  @media (min-width: 62rem) {
     flex-direction: column;
     width: 12.5rem;
     .percentage-container {
@@ -23,7 +23,7 @@ const SubCardContainer = styled.div`
 const CardImage = styled.img`
   padding-right: 0.625rem;
   width: 25%;
-  @media (min-width: 992px) {
+  @media (min-width: 62rem) {
     width: 100%;
     height: 18.75rem;
     background-size: cover;
@@ -55,41 +55,45 @@ const MovieDate = styled.div`
   color: #999999;
   margin-bottom: 1.25rem;
 `;
+
 const MovieDescription = styled.div`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
   font-size: 0.875rem;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: 0.3125rem;
-  @media (min-width: 992px) {
+  @media (min-width: 62rem) {
     display: none;
   }
 `;
+
 const PercentageContainer = styled.div`
   font-weight: 600;
   height: 2.375rem;
-  position: absolute;
   left: 5%;
+  position: absolute;
   top: -15%;
   width: 2.375rem;
 `;
+
 const Icon = styled.img`
   cursor: pointer;
-  height: 25.59px;
+  height: 1.5625rem;
   position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 25.59px;
+  right: 0.625rem;
+  top: 0.625rem;
+  width: 1.5625rem;
   z-index: 1;
 `;
+
 const CardContainer = styled.div`
   position: relative;
   .menu-card {
     display: none;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 62rem) {
     .menu-card {
       display: block;
     }
@@ -100,18 +104,18 @@ const MenuContent = styled.div`
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   display: block;
-  min-width: 160px;
+  left: 3.125rem;
+  min-width: 10rem;
   position: absolute;
-  left: 50px;
-  top: 35px;
+  top: 2.1875rem;
   z-index: 1;
 `;
 
 const MenuItem = styled.a`
   color: black;
   display: flex;
-  gap: 20px;
-  padding: 12px 16px;
+  gap: 1.25rem;
+  padding: 0.75rem 1rem;
   text-decoration: none;
   &:hover {
     background-color: #f1f1f1;

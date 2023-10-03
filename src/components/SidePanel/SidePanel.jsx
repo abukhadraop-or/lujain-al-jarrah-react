@@ -6,14 +6,18 @@ import Sort from 'components/Sort/Sort';
 
 /**
  * Filter and sort component for movies.
- * @param {object} props - The properties for the component.
- * @param {function} props.getMovies - Function to retrieve movies.
- * @param {function} props.setSelectedGenres - Function to set selected genres.
- * @param {Array} props.selectedGenres - Array of selected genres.
- * @param {function} props.setAvailabilities - Function to set availabilities.
- * @param {Array} props.availabilities - Array of availabilities.
- * @param {function} props.setRelease - Function to set release.
- * @param {Array} props.release - Array of release types.
+ *
+ * @param {object} props The properties for the component.
+ * @param {function} props.getMovies  Function to retrieve movies.
+ * @param {function} props.setSelectedGenres  Function to set selected genres.
+ * @param {Array} props.selectedGenres  Array of selected genres.
+ * @param {function} props.setAvailabilities Function to set availabilities.
+ * @param {Array} props.availabilities  Array of availabilities.
+ * @param {function} props.setRelease  Function to set release.
+ * @param {Array} props.release Array of release types.
+ * @param {function} props.setSelectedKeyword Function to set SelectedKeyword.
+ * @param {Array} props.selectedKeyword Array of selectedKeyword.
+ *
  * @returns {JSX.Element} The SidePanel component.
  */
 export default function SidePanel({

@@ -13,7 +13,6 @@ import sortOptions from 'components/Sort/sort-data';
 
 /**
  * Functional component for sorting movie results.
- * @component
  */
 export default function Sort() {
   const [isActive, setIsActive] = useState(false);

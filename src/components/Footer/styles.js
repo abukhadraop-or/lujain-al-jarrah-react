@@ -8,7 +8,7 @@ const Container = styled.div`
   img.TMDB-desktop {
     display: none;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 62rem) {
     display: flex;
     justify-content: center;
     img.TMDB-desktop {
@@ -17,20 +17,24 @@ const Container = styled.div`
     }
   }
 `;
+
 const Header = styled.h3`
   color: #fff;
   font-size: 1.4em;
   margin: 0 2.5rem;
 `;
+
 const ItemContainer = styled.ul`
   display: block;
   list-style-type: none;
 `;
+
 const Item = styled.li`
   color: #cbdccb;
   line-height: 1.6em;
   max-width: 16.25rem;
 `;
+
 const Button = styled.button`
   background-color: #fff;
   border-radius: 5px;
@@ -42,12 +46,15 @@ const Button = styled.button`
   margin: 1rem 2.5rem;
   padding: 0.5rem 1rem;
 `;
+
 const Title = styled.div`
   cursor: pointer;
 `;
+
 const Image = styled.img`
-  width: 130px;
-  height: 94px;
+  width: 8.125rem;
+  height: 5.875rem;
   cursor: pointer;
 `;
+
 export { Container, Header, Item, ItemContainer, Button, Title, Image };

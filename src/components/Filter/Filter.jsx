@@ -6,7 +6,7 @@ import {
 } from 'components/shared-styled-comp/shared-styled-comp';
 import React, { useState } from 'react';
 
-import GenereInput from 'components/GenereInput/GenereInput';
+import GenreInput from 'components/GenreInput/GenreInput';
 import Keyword from 'components/Keyword/Keyword';
 import LanguageInput from 'components/LanguageInput/LanguageInput';
 import PropTypes from 'prop-types';
@@ -18,16 +18,17 @@ import fetchDataFromApi from 'utils/function';
 
 /**
  * Filter Component
- *
- * @component
- * @param {Function} props.setSelectedGenres - Callback function to set selected movie genres.
- * @param {string[]} props.selectedGenres - Array of selected movie genres.
- * @param {Function} props.setAvailabilities - Callback function to set selected availabilities.
- * @param {string[]} props.availabilities - Array of selected availabilities.
- * @param {Function} props.setRelease - Callback function to set selected release dates.
- * @param {string[]} props.release - Array of selected release dates.
- * @param {Function} props.setSelectedKeyword - Callback function to set selected keywords for search.
- * @param {string[]} props.selectedKeyword - Array of selected keywords.
+ * 
+ * @param {Object}    props  The component's properties.
+ * @param {Function}  props.setSelectedGenres  Callback function to set selected movie genres.
+ * @param {string[]}  props.selectedGenres  Array of selected movie genres.
+ * @param {Function}  props.setAvailabilities  Callback function to set selected availabilities.
+ * @param {string[]}  props.availabilities Array of selected availabilities.
+ * @param {Function}  props.setRelease  Callback function to set selected release dates.
+ * @param {string[]}  props.release  Array of selected release dates.
+ * @param {Function}  props.setSelectedKeyword  Callback function to set selected keywords for search.
+ * @param {string[]}  props.selectedKeyword Array of selected keywords.
+ * 
  * @returns {JSX.Element} Rendered Filter component
 
  * */
@@ -106,7 +107,7 @@ export default function Filter({
           release={release}
           errorMessage={errorMessages.countryErrorMsg}
         />
-        <GenereInput
+        <GenreInput
           setSelectedGenres={setSelectedGenres}
           selectedGenres={selectedGenres}
           genres={genres}

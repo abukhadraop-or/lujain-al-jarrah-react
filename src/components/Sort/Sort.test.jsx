@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 
-/* eslint-disable no-undef */
 import React from 'react';
 import Sort from 'components/Sort/Sort';
 

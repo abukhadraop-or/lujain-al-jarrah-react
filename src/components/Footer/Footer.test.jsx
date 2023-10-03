@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
 import Footer from 'components/Footer/Footer';
-/* eslint-disable no-undef */
 import React from 'react';
 
 const { getByText, getByAltText } = screen;

@@ -17,7 +17,7 @@ export default function MovieApp() {
   const [availabilities, setAvailabilities] = useState([]);
   const [selectedKeyword, setSelectedKeyword] = useState([]);
   const [release, setRelease] = useState([]);
-  const [ErrorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [params, setParams] = useState({
     page: 1,
     region: '',
@@ -93,7 +93,7 @@ export default function MovieApp() {
           setMovies={setMovies}
           setParams={setParams}
           params={params}
-          ErrorMessage={ErrorMessage}
+          errorMessage={errorMessage}
         />
       </Container>
       <Footer />

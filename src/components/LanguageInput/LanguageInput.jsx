@@ -9,8 +9,10 @@ import React from 'react';
 /**
  * LanguageInput Component
  *
- * @component
+ * @param {Object} props - The component's properties.
  * @param {Array} props.lang - array pf language
+ *@param {string} props.errorMessage - The component's properties.
+ 
  * @returns {JSX.Element} Rendered LanguageInput component
  */
 export default function LanguageInput({ lang, errorMessage }) {

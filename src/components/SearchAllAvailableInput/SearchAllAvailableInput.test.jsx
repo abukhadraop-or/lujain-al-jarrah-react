@@ -1,12 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import React from 'react';
 import SearchAllAvailableInput from './SearchAllAvailableInput';
 
 const { getByText, getByTestId } = screen;
-describe('SearchAllAvailabe', () => {
+describe('SearchAllAvailableInput', () => {
   test('renders correctly', () => {
     render(
       <SearchAllAvailableInput

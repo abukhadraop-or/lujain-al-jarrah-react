@@ -1,12 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import GenereInput from 'components/GenereInput/GenereInput';
-/* eslint-disable no-undef */
+import GenreInput from 'components/GenreInput/GenreInput';
 import React from 'react';
 
 const { getByText } = screen;
 
-describe('GenereInput', () => {
+describe('GenreInput', () => {
   const genres = [
     { id: 1, name: 'Action' },
     { id: 2, name: 'Comedy' },
@@ -14,7 +13,7 @@ describe('GenereInput', () => {
 
   test('renders correctly', () => {
     render(
-      <GenereInput
+      <GenreInput
         setSelectedGenres={() => {}}
         selectedGenres={[]}
         genres={genres}
@@ -31,7 +30,7 @@ describe('GenereInput', () => {
     const setSelectedGenresMock = jest.fn();
     const initialSelectedGenres = [];
     render(
-      <GenereInput
+      <GenreInput
         setSelectedGenres={setSelectedGenresMock}
         selectedGenres={initialSelectedGenres}
         genres={genres}
@@ -52,7 +51,7 @@ describe('GenereInput', () => {
     const setSelectedGenresMock = jest.fn();
     const initialSelectedGenres = ['1'];
     render(
-      <GenereInput
+      <GenreInput
         setSelectedGenres={setSelectedGenresMock}
         selectedGenres={initialSelectedGenres}
         genres={genres}

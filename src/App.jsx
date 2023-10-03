@@ -1,5 +1,3 @@
-import './App.css';
-
 import MovieApp from 'pages/MoviesList/MovieApp';
 import React from 'react';
 

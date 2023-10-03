@@ -1,7 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import SidePanel from 'components/SidePanel/SidePanel';

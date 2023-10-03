@@ -9,7 +9,8 @@ import { Text } from 'components/shared-styled-comp/shared-styled-comp';
 
 /**
  * Functional component for searching and filtering by availability options.
- * @component
+ *
+ * @param {Object} props - The component's properties.
  * @param {Function} props.setAvailabilities - Function to set availabilities.
  * @param {Array} props.availabilities - Array of availabilities.
  */

@@ -11,10 +11,12 @@ import fetchDataFromApi from 'utils/function';
  * MovieList Component
  * Displays a list of movies in a paginated manner and provides an option to load more movies.
  *
- * @param {Array} movies - The array of movies to display.
- * @param {Function} setMovies - Function to set the movies in the parent component.
- * @param {Function} setParams - Function to set parameters in the parent component.
- * @param {Object} params - Parameters for the movie list.
+ *  @param {Object} props  The component's properties.
+ * @param {Array} props.movies  The array of movies to display.
+ * @param {Function} props.setMovies Function to set the movies in the parent component.
+ * @param {Function} props.setParams  Function to set parameters in the parent component.
+ * @param {Object} props.params  Parameters for the movie list.
+ * @param {string} props.errorMessage  error message.
  * @returns {JSX.Element} JSX element representing the movie list.
  */
 export default function MovieList({
@@ -22,7 +24,7 @@ export default function MovieList({
   setMovies,
   setParams,
   params,
-  ErrorMessage,
+  errorMessage,
 }) {
   const [selectedMovieId, setSelectedMovieId] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
@@ -61,7 +63,7 @@ export default function MovieList({
 
   return (
     <div>
-      {movies.length > 0 && !ErrorMessage ? (
+      {movies.length > 0 && !errorMessage ? (
         <div>
           <CardContainer>
             {movies.map((movie) => (
@@ -88,7 +90,7 @@ export default function MovieList({
           </Button>
         </div>
       ) : (
-        ErrorMessage || 'No items were found that match your query.'
+        errorMessage || 'No items were found that match your query.'
       )}
     </div>
   );

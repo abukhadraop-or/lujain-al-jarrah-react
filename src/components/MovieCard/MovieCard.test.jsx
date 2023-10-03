@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
 import MovieCard from 'components/MovieCard/MovieCard';
-/* eslint-disable no-undef */
 import React from 'react';
 
 const { getByText, getByAltText } = screen;

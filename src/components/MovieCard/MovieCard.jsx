@@ -25,13 +25,15 @@ import menuCard from 'assets/menu-card.svg';
  * MovieCard Component
  * Displays a card representing a movie with its title, release date, description, and image.
  *
- * @param {string} title - The title of the movie.
- * @param {string} releaseDate - The release date of the movie.
- * @param {string} description - The description or summary of the movie.
- * @param {string} imageSrc - The URL or source for the movie's image
+ * @param {Object} props - The component's properties.
+ * @param {string} props.title - The title of the movie.
+ * @param {string} props.releaseDate - The release date of the movie.
+ * @param {string} props.description - The description or summary of the movie.
+ * @param {string} props.imageSrc - The URL or source for the movie's image
  * @param {number} props.voteAverage - The average vote for the movie.
- * @param {boolean} isMenuOpen -close or open menu.
- * @param {number} menuOpenHandler - fUNCTION TO OPEN/CLOSE menu.
+ * @param {boolean} props.isMenuOpen -close or open menu.
+ * @param {number} props.menuOpenHandler - fUNCTION TO OPEN/CLOSE menu.
+ *
  * @returns {JSX.Element} JSX element representing the movie card.
  */
 export default function MovieCard({

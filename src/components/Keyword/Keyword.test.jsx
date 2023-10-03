@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
 import Keyword from 'components/Keyword/Keyword';
-/* eslint-disable no-undef */
 import React from 'react';
 
 const { getByText } = screen;

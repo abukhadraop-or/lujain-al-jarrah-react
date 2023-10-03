@@ -14,11 +14,12 @@ import PropTypes from 'prop-types';
 
 /**
  * Functional component for filtering by release dates.
- * @component
- * @param {Object} props - The component props.
- * @param {Array} props.country - Array of available countries.
- * @param {function} props.setRelease - Callback function to set release types.
- * @param {Array} props.release - Current release types.
+ *
+ * @param {Object} props The component props.
+ * @param {Array} props.country  Array of available countries.
+ * @param {function} props.setRelease  Callback function to set release types.
+ * @param {Array} props.release  Current release types.
+ *  @param {string} props.errorMessage  Current release types.
  */
 export default function ReleaseDateInput({
   country,

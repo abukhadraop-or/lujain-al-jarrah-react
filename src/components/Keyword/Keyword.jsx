@@ -11,8 +11,10 @@ const { Option } = Select;
  * Keyword Component
  * This component allows users to search and select keywords.
  *
- * @param {function} setSelectedKeyword - Function to set the selected keywords.
- * @param {Array} selectedKeyword - Array of selected keywords.
+ * @param {Object} props - The component's properties.
+ * @param {function} props.setSelectedKeyword - Function to set the selected keywords.
+ * @param {Array} props.selectedKeyword - Array of selected keywords.
+ *
  * @returns {JSX.Element} JSX element representing the Keyword component.
  */
 export default function Keyword({ setSelectedKeyword, selectedKeyword }) {

@@ -1,16 +1,17 @@
-import GenresButton from 'components/GenereInput/styles';
+import GenresButton from 'components/GenreInput/styles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Text } from 'components/shared-styled-comp/shared-styled-comp';
 
 /**
  * Functional component for selecting movie genres.
- * @component
+ *
+ * @param {Object} props - The component's properties.
  * @param {Function} props.setSelectedGenres - Function to set selected genres.
  * @param {Array} props.selectedGenres - Array of selected genres.
  * @param {Array} props.genres - Array of available genres.
  */
-export default function GenereInput({
+export default function GenreInput({
   setSelectedGenres,
   selectedGenres,
   genres,
@@ -51,7 +52,7 @@ export default function GenereInput({
   );
 }
 
-GenereInput.propTypes = {
+GenreInput.propTypes = {
   setSelectedGenres: PropTypes.func,
   selectedGenres: PropTypes.arrayOf(PropTypes.string),
   genres: PropTypes.arrayOf(
@@ -63,7 +64,7 @@ GenereInput.propTypes = {
   errorMessage: PropTypes.string,
 };
 
-GenereInput.defaultProps = {
+GenreInput.defaultProps = {
   setSelectedGenres: () => {},
   selectedGenres: [],
   genres: [],

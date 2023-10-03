@@ -1,7 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import MovieList from 'components/MovieList/MovieList';
-/* eslint-disable no-undef */
 import React from 'react';
 import axios from 'axios';
 

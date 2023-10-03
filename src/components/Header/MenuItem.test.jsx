@@ -5,7 +5,6 @@ import MenuItem from './MenuItem';
 
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-undef */
 
 const { getByText, queryByText } = screen;
 

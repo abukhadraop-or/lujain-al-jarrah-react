@@ -15,7 +15,7 @@ const Button = styled.button`
 `;
 
 const CardContainer = styled.div`
-  @media (min-width: 992px) {
+  @media (min-width: 62rem) {
     display: flex;
     flex-wrap: wrap;
   }

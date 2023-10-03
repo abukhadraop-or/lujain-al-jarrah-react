@@ -9,7 +9,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const DateContainer = styled.div`
-  margin-top: 10px;
+  margin-top: 0.625rem;
 `;
+
 export { Label, Container, DateContainer };
