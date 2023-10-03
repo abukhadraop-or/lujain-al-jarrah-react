@@ -101,11 +101,7 @@ function Header() {
       />
       <IconContainter key="icon-container">
         <DropDownMenu key="user-dropdown">
-          <FeatherIcon
-            icon="user"
-            style={{ padding: '0 10px' }}
-            className="user-icon"
-          />
+          <FeatherIcon icon="user" className="user-icon" />
           <DropDownMenuContent className="dropdown-content">
             <DropDownLink key="login-link" href="#">
               Login

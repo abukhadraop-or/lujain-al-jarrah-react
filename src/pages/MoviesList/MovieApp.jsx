@@ -5,7 +5,6 @@ import Footer from 'components/Footer/Footer';
 import Header from 'components/Header/Header';
 import MovieList from 'components/MovieList/MovieList';
 import SidePanel from 'components/SidePanel/SidePanel';
-import SnackbarComp from 'components/SnackbarComp/SnackbarComp';
 import fetchDataFromApi from 'utils/function';
 
 /**
@@ -97,7 +96,6 @@ export default function MovieApp() {
           ErrorMessage={ErrorMessage}
         />
       </Container>
-      <SnackbarComp />
       <Footer />
     </>
   );

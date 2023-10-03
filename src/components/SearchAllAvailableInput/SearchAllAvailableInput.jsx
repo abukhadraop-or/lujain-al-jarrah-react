@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
+import Container from 'components/SearchAllAvailableInput/styles';
 import PropTypes from 'prop-types';
 import { Text } from 'components/shared-styled-comp/shared-styled-comp';
 
@@ -63,7 +64,7 @@ export default function SearchAllAvailableInput({
         Search all availabilities?
       </label>
       {!searchAllActive && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Container>
           {availableArr.map((opt) => (
             <label htmlFor={opt} key={opt}>
               <input
@@ -78,7 +79,7 @@ export default function SearchAllAvailableInput({
               {opt}
             </label>
           ))}
-        </div>
+        </Container>
       )}
     </>
   );

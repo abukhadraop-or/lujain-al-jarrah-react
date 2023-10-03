@@ -1,3 +1,8 @@
+import {
+  Container,
+  DateContainer,
+  Label,
+} from 'components/ReleaseDateInput/styles';
 import React, { useState } from 'react';
 import {
   SelectStyle,
@@ -5,7 +10,6 @@ import {
 } from 'components/shared-styled-comp/shared-styled-comp';
 
 import { DatePicker } from 'antd';
-import Label from 'components/ReleaseDateInput/styles';
 import PropTypes from 'prop-types';
 
 /**
@@ -86,7 +90,7 @@ export default function ReleaseDateInput({
         Search all releases?
       </label>
       {!searchAllRelease && (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Container>
           <label htmlFor="country" key="country-label">
             <input
               type="checkbox"
@@ -124,9 +128,9 @@ export default function ReleaseDateInput({
               {opt.name}
             </label>
           ))}
-        </div>
+        </Container>
       )}
-      <div key="date-pickers" style={{ marginTop: '10px' }}>
+      <DateContainer key="date-pickers">
         <Label>
           from
           <DatePicker name="start_date" data-testid="start_date" />
@@ -136,7 +140,7 @@ export default function ReleaseDateInput({
           to
           <DatePicker name="end_date" />
         </Label>
-      </div>
+      </DateContainer>
     </div>
   );
 }
