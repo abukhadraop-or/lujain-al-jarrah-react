@@ -33,6 +33,7 @@ describe('SidePanel', () => {
     const sortSelect = getByLabelText('Sort Results By');
     await waitFor(() => expect(sortSelect).toBeInTheDocument());
   });
+
   test('toggles content filter display when "Filter" is clicked', async () => {
     render(<SidePanel />);
     const filterButton = getByText('Filter');

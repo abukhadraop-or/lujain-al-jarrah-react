@@ -12,7 +12,8 @@ describe('ShowMeInput Component', () => {
     { id: 'seen', label: 'Everything', value: 1 },
     { id: 'not_seen', label: 'Movies I Have not Seen', value: 2 },
   ];
-  it('renders ShowMeInput component with correct label and radio options', () => {
+
+  test('renders ShowMeInput component with correct label and radio options', () => {
     render(<ShowMeInput />);
 
     expect(getByText('Show Me')).toBeInTheDocument();

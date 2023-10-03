@@ -7,7 +7,7 @@ import SearchAllAvailableInput from './SearchAllAvailableInput';
 
 const { getByText, getByTestId } = screen;
 describe('SearchAllAvailabe', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <SearchAllAvailableInput
         setAvailabilities={() => {}}
@@ -18,7 +18,7 @@ describe('SearchAllAvailabe', () => {
     expect(allCheckbox).toBeInTheDocument();
   });
 
-  it('toggles searchAllActive state when "Search all availabilities?" checkbox is clicked', () => {
+  test('toggles searchAllActive state when "Search all availabilities?" checkbox is clicked', () => {
     render(
       <SearchAllAvailableInput
         setAvailabilities={() => {}}
@@ -30,7 +30,7 @@ describe('SearchAllAvailabe', () => {
     expect(allCheckbox).not.toBeChecked();
   });
 
-  it('calls changeAvailabilities function when availability checkboxes are clicked', () => {
+  test('calls changeAvailabilities function when availability checkboxes are clicked', () => {
     const setAvailabilitiesMock = jest.fn();
     render(
       <SearchAllAvailableInput

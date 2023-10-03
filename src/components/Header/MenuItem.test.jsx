@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import React from 'react';
 import MenuItem from './MenuItem';
+
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-undef */

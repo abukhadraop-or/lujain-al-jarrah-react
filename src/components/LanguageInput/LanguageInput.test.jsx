@@ -12,7 +12,7 @@ describe('LanguageInput Component', () => {
     { iso_639_1: 'es', english_name: 'Spanish' },
   ];
 
-  it('renders LanguageInput component with provided language options', () => {
+  test('renders LanguageInput component with provided language options', () => {
     render(<LanguageInput lang={sampleLangData} />);
 
     expect(getByText('Languages')).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('LanguageInput Component', () => {
     expect(getByText('Spanish')).toBeInTheDocument();
   });
 
-  it('renders LanguageInput component with empty language options', () => {
+  test('renders LanguageInput component with empty language options', () => {
     render(<LanguageInput lang={[]} />);
 
     expect(getByText('Languages')).toBeInTheDocument();

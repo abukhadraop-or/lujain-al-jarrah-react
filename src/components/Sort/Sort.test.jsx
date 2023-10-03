@@ -6,7 +6,7 @@ import Sort from 'components/Sort/Sort';
 
 const { getByText, getByLabelText } = screen;
 describe('Sort', () => {
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(<Sort />);
 
     const sortLabel = getByText('Sort');

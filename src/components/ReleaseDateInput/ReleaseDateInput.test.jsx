@@ -14,7 +14,7 @@ describe('ReleaseDateInput', () => {
 
   const mockSetRelease = jest.fn();
 
-  it('renders correctly', () => {
+  test('renders correctly', () => {
     render(
       <ReleaseDateInput
         country={countryData}
@@ -29,7 +29,7 @@ describe('ReleaseDateInput', () => {
     expect(searchAllReleasesCheckbox).toBeInTheDocument();
   });
 
-  it('triggers searchAllReleaseHandler when Search all releases? checkbox is clicked', () => {
+  test('triggers searchAllReleaseHandler when Search all releases? checkbox is clicked', () => {
     render(
       <ReleaseDateInput
         country={countryData}
@@ -44,7 +44,7 @@ describe('ReleaseDateInput', () => {
     expect(mockSetRelease).toHaveBeenCalledWith([]);
   });
 
-  it('triggers searchAllCountryHandler when Search all countries? checkbox is clicked', () => {
+  test('triggers searchAllCountryHandler when Search all countries? checkbox is clicked', () => {
     render(
       <ReleaseDateInput
         country={countryData}

@@ -11,7 +11,8 @@ describe('GenereInput', () => {
     { id: 1, name: 'Action' },
     { id: 2, name: 'Comedy' },
   ];
-  it('renders correctly', () => {
+
+  test('renders correctly', () => {
     render(
       <GenereInput
         setSelectedGenres={() => {}}
@@ -26,7 +27,7 @@ describe('GenereInput', () => {
     });
   });
 
-  it('Add Id to array when select the button', () => {
+  test('Add Id to array when select the button', () => {
     const setSelectedGenresMock = jest.fn();
     const initialSelectedGenres = [];
     render(
@@ -47,7 +48,7 @@ describe('GenereInput', () => {
     expect(result).toEqual(['1']);
   });
 
-  it('Remove Id to array when deselect the button', () => {
+  test('Remove Id to array when deselect the button', () => {
     const setSelectedGenresMock = jest.fn();
     const initialSelectedGenres = ['1'];
     render(

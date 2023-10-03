@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 
 export default function SnackbarComp() {
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     open: false,
     vertical: 'top',
     horizontal: 'center',
